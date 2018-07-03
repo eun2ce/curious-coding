@@ -1,7 +1,15 @@
 {% if board_detail %}
-
 <h1>{{ board_detail.title }}</h1>
 <h5>{{ board_detail.content }}</h5>
+<h3>Comments</h3>
+<a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a>
+<ul>
+{% for comment in board_detail.comment_set.all %}
+<li>
+    [ {{comment.author}} ] {{comment.message}} date: {{comment.created}}
+</li>
+{% endfor %}
+</ul>
 {% else %}
 <h1>no board_detail</h1>
 {% endif %}
