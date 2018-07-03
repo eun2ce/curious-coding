@@ -21,7 +21,7 @@ class DetailView(generic.DetailView):
     # def get_queryset(self):
     #    return Board.objects.filter(id=self.kwargs['pk'])
 
-def commnet_new(request, pk):
+def commnet_new(request, pk):   ##댓글 남기기
     board = get_object_or_404(Board,pk=pk)
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -36,12 +36,42 @@ def commnet_new(request, pk):
         'form' : form,
     })
 
+def comment_edit(request,board_pk,pk):  ##댓글 수정
+    comment =get_object_or_404(Comment,pk=pk)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance = comment)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.title = Board.objects.get(pk=board_pk)
+            comment.save()
+            return HttpResponseRedirect(reverse('board:detail',args=(board_pk,)))
+    else:
+        form = CommentForm(instance=comment)
+    return render (request,'board/post_form.html',{
+            'form' : form,
+    })
+        
 def write_form(request):    #보여질 글쓰기 폼
-    return render(request,'board/write.html')
+    if request.method == 'POST':
+        form = BoardForm(request.POST)
+        if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
+            # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
+            # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
+            form.save()
+            return HttpResponseRedirect('/board')
+           # return render(request,'board/index.html')
+    else:       # 버튼 눌렀을 때 이동할 html
+        form = BoardForm()
+    return render (request,'board/write.html',{
+        'form' : form,
+    })
 
 def do_write_board(request):
     br = Board(title = request.POST['title'],
                content = request.POST['content'],)
     br.save()
+    return HttpResponseRedirect('board/index.html')
+
 
 

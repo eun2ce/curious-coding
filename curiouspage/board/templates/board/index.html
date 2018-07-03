@@ -1,9 +1,7 @@
-{% if board_title %}
+
 <ul>
     {% for Board in board_title %}
     <li><a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a></li>
     {% endfor %}
 </ul>
-{% else %}
-<p>no Board are available.</p>
-{% endif %}
+<p><a href="{% url 'board:write_form' %}">글쓰기</a> </p>

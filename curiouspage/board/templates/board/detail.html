@@ -7,6 +7,7 @@
 {% for comment in board_detail.comment_set.all %}
 <li>
     [ {{comment.author}} ] {{comment.message}} date: {{comment.created}}
+    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
 </li>
 {% endfor %}
 </ul>
