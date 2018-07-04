@@ -1,7 +1,48 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <title>게시판..</title>
+ <style type="text/css">
+   body,html{
+     margin: 0;
+     padding:0;}
+  .title,.content,.write{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    display: flex;
+    margin:auto;
+     }
+   .title{
+     width:30vw;
+     height: 7vh;
+     background-color:red;
+   margin-top: 35px;}
+     .content{
+        margin-top: 10px;
+       width:60vw;
+       height:50vh;
+       background-color:yellow;}
+    .write{
+      width:10vw;
+      height:3vh;
 
-<ul>
-    {% for Board in board_title %}
-    <li><a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a></li>
-    {% endfor %}
-</ul>
-<p><a href="{% url 'board:write_form' %}">글쓰기</a> </p>
+      margin-left:70vw;}
+ </style>
+</head>
+<body>
+<div class="title">
+<h3>Notice</h3>
+</div>
+<div class="content">
+  {% for Board in board_title %}
+  <a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a> <br>
+  {% endfor %}
+</div>
+
+<div class="write">
+<a href="{% url 'board:write_form' %}">글쓰기</a>
+</div>
+<body>
+</html>

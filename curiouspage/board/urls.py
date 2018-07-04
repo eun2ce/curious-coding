@@ -8,6 +8,6 @@ urlpatterns = [
     path('board/<int:pk>/comment/new',views.commnet_new, name ='comment_new'),
     path('<int:board_pk>/comment/<int:pk>/edit',views.comment_edit, name ='comment_edit'),
     path('write_form', views.write_form, name = 'write_form'),
-    path('do_write_board',views.do_write_board,name= 'do_write_board'),
+    # path('do_write_board',views.do_write_board,name= 'do_write_board'),
   #  path('write', views.Write_Board_Crate.as_view(), name='write'),
 ]

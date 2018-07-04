@@ -8,7 +8,7 @@ class Board (models.Model):
     created = models.DateTimeField(auto_now_add=True) #글생성
     updated = models.DateTimeField(auto_now=True)   #글수정
     
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
 class Comment(models.Model):
@@ -17,3 +17,6 @@ class Comment(models.Model):
     message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
+    def __unicode__(self):
+        return self.title
