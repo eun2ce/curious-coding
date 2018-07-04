@@ -5,15 +5,20 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board, Comment
 from django.urls import reverse
 from django.views import generic
-
+from django.db.models import Q
 from .forms import CommentForm, BoardForm
 # Create your views here.
+
 class IndexView(generic.ListView):
     template_name = 'board/index.html'  #index.html을 뿌려줄 것
     context_object_name = 'board_title'
-    def get_queryset(self):
-        return Board.objects.order_by('-id')
 
+    def get_queryset(self):
+        search_word = self.request.GET.get('search_word', '')
+        if search_word : # 검색 된 단어 있으면
+            return Board.objects.filter(title__icontains=search_word)
+        return Board.objects.order_by('-id')
+    
 class DetailView(generic.DetailView):
     model = Board
     template_name = 'board/detail.html'
@@ -72,6 +77,3 @@ def do_write_board(request):
                content = request.POST['content'],)
     br.save()
     return HttpResponseRedirect('board/index.html')
-
-
-
