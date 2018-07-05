@@ -25,6 +25,42 @@ class DetailView(generic.DetailView):
     context_object_name = 'board_detail'
     # def get_queryset(self):
     #    return Board.objects.filter(id=self.kwargs['pk'])
+def write_form(request):    #보여질 글쓰기 폼
+    if request.method == 'POST':
+        form = BoardForm(request.POST,request.FILES)
+        if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
+            # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
+            # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
+            form.save()
+            return HttpResponseRedirect('/board')
+           # return render(request,'board/index.html')
+    else:       # 버튼 눌렀을 때 이동할 html
+        form = BoardForm()
+    return render (request,'board/write.html',{
+        'form' : form,
+    })
+
+def do_write_board(request):
+    br = Board(title = request.POST['title'],
+               content = request.POST['content'],
+               file = request.POST['file'],)
+    br.save()
+    return HttpResponseRedirect('board/index.html')
+
+def write_eidt(request,pk):
+    board = get_object_or_404(Board,pk=pk)
+
+    if request.method == 'POST':
+        form = BoardForm(request.POST,request.FILES, instance = board)
+        if form.is_valid():
+            board = form.save(commit = False)
+            board.save()
+            return HttpResponseRedirect(reverse('board:detail',args=(pk,)))
+    else:
+        form = BoardForm(instance=board)
+    return render (request,'board/write.html',{
+            'form' : form,
+    })
 
 def commnet_new(request, pk):   ##댓글 남기기
     board = get_object_or_404(Board,pk=pk)
@@ -57,24 +93,3 @@ def comment_edit(request,board_pk,pk):  ##댓글 수정
             'form' : form,
     })
         
-def write_form(request):    #보여질 글쓰기 폼
-    if request.method == 'POST':
-        form = BoardForm(request.POST)
-        if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
-            # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
-            # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
-            form.save()
-            return HttpResponseRedirect('/board')
-           # return render(request,'board/index.html')
-    else:       # 버튼 눌렀을 때 이동할 html
-        form = BoardForm()
-    return render (request,'board/write.html',{
-        'form' : form,
-    })
-
-def do_write_board(request):
-    br = Board(title = request.POST['title'],
-               content = request.POST['content'],
-               file = request.POST['file'])
-    br.save()
-    return HttpResponseRedirect('board/index.html')

@@ -9,6 +9,7 @@
 <h3>file none.</h3>
 {% endif %}
 <h5>{{ board_detail.content|linebreaks }}</h5>
+ <a href="{% url "board:write_eidt" board_detail.pk %}">글수정</a>
 <h3>Comments</h3>
 <a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a>
 <ul>

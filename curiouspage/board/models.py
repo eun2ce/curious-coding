@@ -5,7 +5,7 @@ from django.db import models
 class Board (models.Model):
     title=models.CharField(max_length=80,null=False) #글제목
     content=models.TextField(null=False)    #글내용
-    file=models.ImageField(blank=True, null=True) # 파일
+    file=models.ImageField(blank=True, null=True, upload_to='media/%Y/%m/%d/') # 파일
     created = models.DateTimeField(auto_now_add=True) #글생성
     updated = models.DateTimeField(auto_now=True)   #글수정
     
