@@ -124,3 +124,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+"""
+static 시스템 내부에서 쓰이는 각종 이미지
+
+meida는 사용자가 업로드 한 파일
+파일을 업로드할 때 내가 원하는 경로에 저장이 되면 좋다.
+위치 지정을 해주면 좋음
+"""
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'

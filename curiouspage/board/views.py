@@ -74,6 +74,7 @@ def write_form(request):    #보여질 글쓰기 폼
 
 def do_write_board(request):
     br = Board(title = request.POST['title'],
-               content = request.POST['content'],)
+               content = request.POST['content'],
+               file = request.POST['file'])
     br.save()
     return HttpResponseRedirect('board/index.html')
