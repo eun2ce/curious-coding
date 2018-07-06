@@ -13,7 +13,7 @@ class Board (models.Model):
         return self.title
 
 class Comment(models.Model):
-    title = models.ForeignKey(Board,on_delete="CASCADE")
+    title = models.ForeignKey(Board,on_delete=models.CASCADE)
     author =models.CharField(max_length = 10)
     message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

@@ -3,9 +3,8 @@ from django.template import loader, Context
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board, Comment
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 from django.views import generic
-from django.db.models import Q
 from .forms import CommentForm, BoardForm
 # Create your views here.
 
@@ -23,8 +22,12 @@ class DetailView(generic.DetailView):
     model = Board
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
-    # def get_queryset(self):
-    #    return Board.objects.filter(id=self.kwargs['pk'])
+
+class BoardDelete(generic.DeleteView):
+    model = Board
+    success_url = reverse_lazy('board:index')
+
+
 def write_form(request):    #보여질 글쓰기 폼
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
@@ -92,4 +95,8 @@ def comment_edit(request,board_pk,pk):  ##댓글 수정
     return render (request,'board/post_form.html',{
             'form' : form,
     })
-        
+class CommentDelete(generic.DeleteView):
+    model = Comment
+    def get_success_url(self):
+        return reverse('board:detail',kwargs={'pk': self.object.title_id})
+

@@ -7,9 +7,11 @@ urlpatterns = [
     path('',views.IndexView.as_view(),name='index'),    #main page
     path('<int:pk>/',views.DetailView.as_view(),name='detail'), #detail page
     path('write_form', views.write_form, name = 'write_form'), #write board
-    path('<int:pk>/write_eidt',views.write_eidt, name = 'write_eidt'),  #w edit write
+    path('<int:pk>/write_eidt',views.write_eidt, name = 'write_eidt'),  # edit write
+    path('<int:pk>/board_delete', views.BoardDelete.as_view(), name = 'board_delete'),   #board delete
     path('board/<int:pk>/comment/new',views.commnet_new, name ='comment_new'), #new comment
     path('<int:board_pk>/comment/<int:pk>/edit',views.comment_edit, name ='comment_edit'), # edit comment
+    path('<int:board_pk>/comment/<int:pk>/comment_delete',views.CommentDelete.as_view(), name ='comment_delete'), # edit comment
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
