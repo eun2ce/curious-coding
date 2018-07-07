@@ -24,11 +24,7 @@ class DetailView(generic.DetailView):
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
 
-class DeleteView(generic.DeleteView):
-    model = Board
-    success_url = reverse_lazy('board:index')
-
-def confirm_passowrd(request,pk):
+def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
     if request.method == 'POST' and request.POST['password'] == board.password:
         form = ConfirmPasswordForm(request.POST, instance = board)
@@ -38,7 +34,7 @@ def confirm_passowrd(request,pk):
             return HttpResponseRedirect(reverse('board:index'))
     else:
         form = ConfirmPasswordForm(instance=board)
-    return render (request,'board/write.html',{
+    return render (request,'board/confirm_password.html',{
             'form' : form,
     })
         
