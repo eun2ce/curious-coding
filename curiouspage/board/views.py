@@ -22,10 +22,16 @@ class DetailView(generic.DetailView):
     model = Board
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
+    
 
 class BoardDelete(generic.DeleteView):
     model = Board
     success_url = reverse_lazy('board:index')
+    def delete(self, request, *args, **kwargs):
+        if  request.POST['password'] == board.password:
+            self.object = self.get_object()
+            self.object.delete()
+            return HttpResponseRedirect(self.get_success_url())
 
 
 def write_form(request):    #보여질 글쓰기 폼
@@ -52,8 +58,7 @@ def do_write_board(request):
 
 def write_eidt(request,pk):
     board = get_object_or_404(Board,pk=pk)
-
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['password'] == board.password:
         form = BoardForm(request.POST,request.FILES, instance = board)
         if form.is_valid():
             board = form.save(commit = False)
@@ -83,7 +88,7 @@ def commnet_new(request, pk):   ##댓글 남기기
 def comment_edit(request,board_pk,pk):  ##댓글 수정
     comment =get_object_or_404(Comment,pk=pk)
 
-    if request.method == 'POST':
+    if request.method == 'POST' :
         form = CommentForm(request.POST, instance = comment)
         if form.is_valid():
             comment = form.save(commit = False)
