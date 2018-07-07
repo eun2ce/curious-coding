@@ -29,7 +29,13 @@
       height:3vh;
 
       margin-left:70vw;}
- </style>
+</style>
+<script type="text/javascript">
+    function goUrl(url) {
+         location.href=url;
+      }
+
+  </script>
 </head>
 <body>
     <form action="" method="get">
@@ -40,11 +46,12 @@
 <h3>Notice</h3>
 </div>
 <div class="content">
-  {% for Board in board_title %}
-  <a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a> <br>
-  {% endfor %}
+ <ul>
+  {% for Board in board_title %} <tr>
+    <td><a href="{% url 'board:detail' Board.id %}"{{Board.title}}</a><p>{{Board.title}}</p></td></tr>
+{% endfor %}
+</ul>
 </div>
-
 <div class="write">
 <a href="{% url 'board:write_form' %}">글쓰기</a>
 </div>
