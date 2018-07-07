@@ -5,7 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board, Comment
 from django.urls import reverse,reverse_lazy
 from django.views import generic
-from .forms import CommentForm, BoardForm
+from .forms import CommentForm, BoardForm, ConfirmPasswordForm
+from operator import eq
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -22,18 +23,25 @@ class DetailView(generic.DetailView):
     model = Board
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
-    
 
-class BoardDelete(generic.DeleteView):
+class DeleteView(generic.DeleteView):
     model = Board
     success_url = reverse_lazy('board:index')
-    def delete(self, request, *args, **kwargs):
-        if  request.POST['password'] == board.password:
-            self.object = self.get_object()
-            self.object.delete()
-            return HttpResponseRedirect(self.get_success_url())
 
-
+def confirm_passowrd(request,pk):
+    board = get_object_or_404(Board,pk=pk)
+    if request.method == 'POST' and request.POST['password'] == board.password:
+        form = ConfirmPasswordForm(request.POST, instance = board)
+        if form.is_valid():
+            board = form.save(commit = False)
+            board.delete()
+            return HttpResponseRedirect(reverse('board:index'))
+    else:
+        form = ConfirmPasswordForm(instance=board)
+    return render (request,'board/write.html',{
+            'form' : form,
+    })
+        
 def write_form(request):    #보여질 글쓰기 폼
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
