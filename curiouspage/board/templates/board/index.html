@@ -1,62 +1,101 @@
 <!doctype html>
 <html>
-<head>
- <meta charset="utf-8">
- <title>게시판..</title>
- <style type="text/css">
-   body,html{
-     margin: 0;
-     padding:0;}
-  .title,.content,.write{
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    display: flex;
-    margin:auto;
-     }
-   .title{
-     width:30vw;
-     height: 7vh;
-     background-color:red;
-   margin-top: 35px;}
-     .content{
-        margin-top: 10px;
-       width:60vw;
-       height:50vh;
-       background-color:yellow;}
-    .write{
-      width:10vw;
-      height:3vh;
 
-      margin-left:70vw;}
-</style>
-<script type="text/javascript">
+<head>
+  <meta charset="utf-8">
+  <title>게시판..</title>
+  <style type="text/css">
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    .title,
+    .content,
+    .write {
+      display: flex;
+      /*   justify-content:center;*/
+      align-items: center;
+      display: flex;
+      margin: auto;
+    }
+
+    .title {
+      height: 40px;
+      width: 400px;
+      border: 1px solid blue;
+      background: #ffffff;
+      margin-top: 100px;
+    }
+
+    input {
+      font-size: 16px;
+      width: 325px;
+      padding: 10px;
+      border: 0px;
+      outline: none;
+      float: left
+    }
+
+    .search {
+      width: 55px;
+      height: 40px;
+      border: 0px;
+      background: blue;
+      float: right;
+      color: #ffffff;
+    }
+
+    .content {
+      margin-top: 10px;
+      width: 80vw;
+      height: 10vh;
+      border: 3px solid blue;
+      border-radius: 10px;
+    }
+
+    .write {
+      width: 10vw;
+      height: 3vh;
+      margin-left: 70vw;
+    }
+    li {
+      list-style: none;
+    }
+  </style>
+  <script type="text/javascript">
     function goUrl(url) {
-         location.href=url;
-      }
+      location.href = url;
+    }
 
   </script>
 </head>
-<body>
-    <form action="" method="get">
-        <input type="text" name="search_word" value="{{ search_word }}">
-        <input type="submit" value="검색">
-      </form>
-<div class="title">
-<h3>Notice</h3>
-</div>
-<div class="content">
- <ul>
-  {% for Board in board_title %} <tr>
-    <td><a href="{% url 'board:detail' Board.id %}"{{Board.title}}</a><p>{{Board.title}}</p></td></tr>
-{% endfor %}
-</ul>
-</div>
-<div class="write">
-<a href="{% url 'board:write_form' %}">글쓰기</a>
-</div>
-<div class="">
 
-</div>
 <body>
+  <div class="nav">
+      <ul><li>
+      <div class="title">
+      <form action="" method="get">
+     <input type ="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
+     <button class="search">검색</button> </form></div></li>
+       <li> <div class="write"> <a href="{% url 'board:write_form' %}"><button>글쓰기</button> </a> </div> </li>  </ul>
+   
+   </div>
+  <ul>
+    {% for Board in board_title %}
+    <tr>
+      <div class="content">
+        <td>
+          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}</a>
+            <p class="content_title">{{Board.title}}</p>
+            <p class="date">[{{Board.updated}}]</p>
+        </td>
+    </tr>
+    </div>
+    {% endfor %}
+  </ul>
+
+  <body>
+
 </html>
