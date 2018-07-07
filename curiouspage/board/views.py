@@ -5,7 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board, Comment
 from django.urls import reverse,reverse_lazy
 from django.views import generic
-from .forms import CommentForm, BoardForm
+from .forms import CommentForm, BoardForm, ConfirmPasswordForm
+from operator import eq
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -23,11 +24,20 @@ class DetailView(generic.DetailView):
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
 
-class BoardDelete(generic.DeleteView):
-    model = Board
-    success_url = reverse_lazy('board:index')
-
-
+def writedel_confirm_pw(request,pk):
+    board = get_object_or_404(Board,pk=pk)
+    if request.method == 'POST' and request.POST['password'] == board.password:
+        form = ConfirmPasswordForm(request.POST, instance = board)
+        if form.is_valid():
+            board = form.save(commit = False)
+            board.delete()
+            return HttpResponseRedirect(reverse('board:index'))
+    else:
+        form = ConfirmPasswordForm(instance=board)
+    return render (request,'board/confirm_password.html',{
+            'form' : form,
+    })
+        
 def write_form(request):    #보여질 글쓰기 폼
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
@@ -52,8 +62,7 @@ def do_write_board(request):
 
 def write_eidt(request,pk):
     board = get_object_or_404(Board,pk=pk)
-
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['password'] == board.password:
         form = BoardForm(request.POST,request.FILES, instance = board)
         if form.is_valid():
             board = form.save(commit = False)
@@ -83,7 +92,7 @@ def commnet_new(request, pk):   ##댓글 남기기
 def comment_edit(request,board_pk,pk):  ##댓글 수정
     comment =get_object_or_404(Comment,pk=pk)
 
-    if request.method == 'POST':
+    if request.method == 'POST' :
         form = CommentForm(request.POST, instance = comment)
         if form.is_valid():
             comment = form.save(commit = False)

@@ -2,7 +2,9 @@ from django.db import models
 #db
 # Create your models here.
 #https://blog.hannal.com/2008/6/04_2-python_django_lecture/ 출처
+
 class Board (models.Model):
+    password = models.CharField(max_length=50,null=False)  #비밀번호
     title=models.CharField(max_length=80,null=False) #글제목
     content=models.TextField(null=False)    #글내용
     file=models.ImageField(blank=True, null=True, upload_to='media/%Y/%m/%d/') # 파일
