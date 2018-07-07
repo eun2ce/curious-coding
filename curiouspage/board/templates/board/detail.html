@@ -1,6 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
 <style>
     img {max-width:100%}
+    .imggg{
+      width: 30vw;
+     height: 45vh;
+     align-items: center;
+     justify-content:center;}
 </style>
+<script type="text/javascript">
+<!--
+function button_event(){
+if (confirm("Are you sure you want to delete your comment ?") == true){    //확인
+    document.form.submit();
+}else{   //취소
+    return;}}
+//-->
+</script>
+</head>
+<body>
+<fieldset style="width:;height;">
 {% if board_detail %}
 <h1>{{ board_detail.title }}</h1>
 {%if board_detail.file %}
@@ -9,23 +29,24 @@
 <h3>file none.</h3>
 {% endif %}
 <h5>{{ board_detail.content|linebreaks }}</h5>
- <a href="{% url "board:write_eidt" board_detail.pk %}">글수정</a>
+<a href="{% url "board:write_eidt" board_detail.pk %}">글수정</a>
  <form action="" method="POST">
         <a href="{% url "board:board_delete" board_detail.pk %}">글삭제</a>
      </form>
+   </fieldset>
 <h3>Comments</h3>
 <a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a>
 <ul>
 {% for comment in board_detail.comment_set.all %}
 <li>
     [ {{comment.author}} ] {{comment.message}} date: {{comment.created}}
-    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
-    <form action="" method="POST">
-            <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
-         </form>
+    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a><br>
+    <input onclick="Javascript:button_event();" type="submit" value="삭제하기">
 </li>
 {% endfor %}
 </ul>
 {% else %}
 <h1>no board_detail</h1>
 {% endif %}
+</body>
+</html>
