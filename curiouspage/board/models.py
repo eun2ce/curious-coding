@@ -38,6 +38,14 @@ class Board (models.Model):
     def update_counter(self):
         self.count = self.count+1
 
+    def created_at_korean_time(self):
+        korean_timezone = timezone(settings.TIME_ZONE)
+        return self.created.astimezone(korean_timezone)
+        
+    def created_at_korean_time(self):
+        korean_timezone = timezone(settings.TIME_ZONE)
+        return self.updated.astimezone(korean_timezone)
+
     def save(self, *args, **kwargs):
         if self.categoryname is None:  # Set default reference
             self.categoryname = Category.objects.get(id=2)

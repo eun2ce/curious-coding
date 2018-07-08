@@ -80,7 +80,7 @@ DATABASES = {
         'NAME':'curious',
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
         'USER':'root',
-        'PASSWORD':'dyd1569147',
+        'PASSWORD':'tiger',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
