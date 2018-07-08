@@ -30,7 +30,6 @@ class Board (models.Model):
     file=models.ImageField(blank=True, null=True, upload_to='media/%Y/%m/%d/') # 파일
     count = models.PositiveIntegerField(default=0)  #조회수
     created = models.DateTimeField(auto_now_add=True) #글생성
-    updated = models.DateTimeField(auto_now=True)   #글수정
     
     def __unicode__(self):
         return self.title
@@ -42,10 +41,6 @@ class Board (models.Model):
         korean_timezone = timezone(settings.TIME_ZONE)
         return self.created.astimezone(korean_timezone)
         
-    def created_at_korean_time(self):
-        korean_timezone = timezone(settings.TIME_ZONE)
-        return self.updated.astimezone(korean_timezone)
-
     def save(self, *args, **kwargs):
         if self.categoryname is None:  # Set default reference
             self.categoryname = Category.objects.get(id=2)

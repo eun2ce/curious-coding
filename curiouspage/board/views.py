@@ -6,7 +6,7 @@ from .models import Board, Comment,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
 from .forms import CommentForm, BoardForm, ConfirmPasswordForm
-from operator import eq
+from pytz import timezone
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         search_word = self.request.GET.get('search_word', '')
         if search_word : # 검색 된 단어 있으면
-            return Board.objects.filter(title__icontains=search_word)
+            return Board.objects.filter(title__icontains=search_word) or Board.objects.filter(content__icontains=search_word)
         return Board.objects.order_by('-id')
 
     
@@ -26,13 +26,11 @@ class DetailView(generic.DetailView):
     context_object_name = 'board_detail'
 
     def get_object(self):
-        statute = super().get_object()
-        statute.count += 1
-        statute.save()
-        return statute
+         statute = super().get_object()
+         statute.count += 1
+         statute.save()
+         return statute
             
-
-
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
     if request.method == 'POST' and request.POST['password'] == board.password:
@@ -102,7 +100,7 @@ def commnet_new(request, pk):   ##댓글 남기기
 def comment_edit(request,board_pk,pk):  ##댓글 수정
     comment =get_object_or_404(Comment,pk=pk)
 
-    if request.method == 'POST' :
+    if request.method == 'POST' and request.POST['password'] == comment.password:
         form = CommentForm(request.POST, instance = comment)
         if form.is_valid():
             comment = form.save(commit = False)
@@ -114,8 +112,23 @@ def comment_edit(request,board_pk,pk):  ##댓글 수정
     return render (request,'board/post_form.html',{
             'form' : form,
     })
-class CommentDelete(generic.DeleteView):
-    model = Comment
-    def get_success_url(self):
-        return reverse('board:detail',kwargs={'pk': self.object.title_id})
+
+def commentdel_confirm_pw(request,board_pk,pk):
+    comment = get_object_or_404(Comment,pk=pk)
+    if request.method == 'POST' and request.POST['password'] == comment.password:
+        form = ConfirmPasswordForm(request.POST, instance = comment)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.delete()
+            return HttpResponseRedirect(reverse('board:detail',args=(board_pk,)))
+    else:
+        form = ConfirmPasswordForm(instance=comment)
+    return render (request,'board/confirm_password.html',{
+            'form' : form,
+    })
+
+# class CommentDelete(generic.DeleteView):
+#     model = Comment
+#     def get_success_url(self):
+#         return reverse('board:detail',kwargs={'pk': self.object.title_id})
 
