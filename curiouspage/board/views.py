@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         search_word = self.request.GET.get('search_word', '')
         if search_word : # 검색 된 단어 있으면
-            return Board.objects.filter(title__icontains=search_word)
+            return Board.objects.filter(title__icontains=search_word) or Board.objects.filter(content__icontains=search_word)
         return Board.objects.order_by('-id')
 
     
