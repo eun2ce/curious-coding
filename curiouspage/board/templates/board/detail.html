@@ -1,4 +1,98 @@
 <style>
+<<<<<<< HEAD
+
+.A{
+  display: block;
+  margin: auto;
+}
+.A h1{
+  text-align: center;
+}
+
+.A img{
+  display: block;
+  margin: auto;
+}
+.A a{
+  text-decoration: none;
+  font-size: 15px;
+  color:black;
+  font-family:monospace;
+  margin-left: 68vw;
+}
+
+.B{
+  margin-left:200px;
+}
+
+.C a{
+  text-decoration: none;
+  font-size: 15px;
+  color:black;
+  font-family:monospace;
+}
+
+.C{
+  display: block;
+  margin: auto;
+}
+
+.D{
+  display: block;
+  margin: auto;
+}
+
+.D a{
+  text-decoration: none;
+  font-size: 15px;
+  color:black;
+  font-family:monospace;
+}
+
+
+</style>
+<div class="A" style="height:auto; width:90%; border:2px solid blue;">
+{% if board_detail %}
+<h1>{{ board_detail.title }}</h1>
+{%if board_detail.file %}
+<img src="{{ board_detail.file.url }}" width="600" height="600">
+{% else %}
+<h3>file none.</h3>
+{% endif %}
+<br>
+<h3>{{ board_detail.content|linebreaks }}</h3>
+<div class="B">
+ <a href="{% url "board:write_eidt" board_detail.pk %}">글수정</a>
+
+   <a href="{% url "board:write_del" board_detail.pk %}">글삭제</a>
+</div>
+<br>
+ </form>
+ </div>
+<br>
+<div class="C" style="height:auto; width:90%; border: ;:2px solid green;">
+<h3>Comments</h3>
+<a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a>
+</div>
+<div class="D" style="height:auto; width:90%; border:2px solid green;">
+<ul>
+{% for comment in board_detail.comment_set.all %}
+<li>
+<div class="E" style="height:auto; width:90%; border-bottom:1px solid green;">
+    {{comment.author}} ] {{comment.message}} date: {{comment.created}}
+</div>
+    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
+    <form action="" method="POST">
+            <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
+         </form>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<h1>no board_detail</h1>
+{% endif %}
+</div>
+=======
 
         .A{
           display: block;
@@ -90,3 +184,4 @@
         {% endif %}
         </div>
         
+>>>>>>> 1b98029836c04769fadc13042bf5a58673e01667
