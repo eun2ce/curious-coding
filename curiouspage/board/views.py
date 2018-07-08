@@ -18,11 +18,20 @@ class IndexView(generic.ListView):
         if search_word : # 검색 된 단어 있으면
             return Board.objects.filter(title__icontains=search_word)
         return Board.objects.order_by('-id')
+
     
 class DetailView(generic.DetailView):
     model = Board
     template_name = 'board/detail.html'
     context_object_name = 'board_detail'
+
+    def get_object(self):
+        statute = super().get_object()
+        statute.count += 1
+        statute.save()
+        return statute
+            
+
 
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)

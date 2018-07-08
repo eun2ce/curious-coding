@@ -28,12 +28,16 @@ class Board (models.Model):
     title=models.CharField(max_length=80,null=False) #글제목
     content=models.TextField(null=False)    #글내용
     file=models.ImageField(blank=True, null=True, upload_to='media/%Y/%m/%d/') # 파일
-    hit =models.IntegerField(11, default=0) #조회수
+    count = models.PositiveIntegerField(default=0)  #조회수
     created = models.DateTimeField(auto_now_add=True) #글생성
     updated = models.DateTimeField(auto_now=True)   #글수정
     
     def __unicode__(self):
         return self.title
+
+    def update_counter(self):
+        self.count = self.count+1
+
     def save(self, *args, **kwargs):
         if self.categoryname is None:  # Set default reference
             self.categoryname = Category.objects.get(id=2)
