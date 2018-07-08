@@ -64,6 +64,7 @@
       float:right;
       color:#ffffff;
     }
+
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
@@ -80,21 +81,25 @@
   <table class="table  table-hover">
     <thead>
       <tr>
+        <th>작성자</th>
         <th>제목</th>
+        <th>조회수</th>
+        <th>주제</th>
         <th>날짜</th>
-      </tr>
+        </tr>
     </thead>
     {% for Board in board_title %}
     <tbody>
-<td> <a href="{% url 'board:detail' Board.id %}" {{Board.title}}</a>
-  {{Board.title}}</td>
-<td>{{Board.created}}</td>
+     <td>{{Board.author}}</td>
+     <td> <a href="{% url 'board:detail' Board.id %}" {{Board.title}}</a>{{Board.title}}</td>
+     <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}} </td>
+     <td> {{Board.subject_type}}</td>
+     <td>{{Board.created}}</td>
     </tbody>
 {% endfor %}
   </table>
 </div>
-
-    </div>
+  </div>
 </body>
 
 </html>
