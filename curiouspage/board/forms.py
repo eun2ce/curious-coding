@@ -19,7 +19,6 @@ class BoardForm(forms.ModelForm):
                 'content',
                 'file',)
 
-
 class ConfirmPasswordForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:

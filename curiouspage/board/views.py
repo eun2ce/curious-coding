@@ -31,8 +31,6 @@ class DetailView(generic.DetailView):
         statute.save()
         return statute
             
-
-
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
     if request.method == 'POST' and request.POST['password'] == board.password:
@@ -114,8 +112,23 @@ def comment_edit(request,board_pk,pk):  ##댓글 수정
     return render (request,'board/post_form.html',{
             'form' : form,
     })
-class CommentDelete(generic.DeleteView):
-    model = Comment
-    def get_success_url(self):
-        return reverse('board:detail',kwargs={'pk': self.object.title_id})
+
+def commentdel_confirm_pw(request,board_pk,pk):
+    comment = get_object_or_404(Comment,pk=pk)
+    if request.method == 'POST' and request.POST['password'] == comment.password:
+        form = ConfirmPasswordForm(request.POST, instance = comment)
+        if form.is_valid():
+            comment = form.save(commit = False)
+            comment.delete()
+            return HttpResponseRedirect(reverse('board:detail',args=(board_pk,)))
+    else:
+        form = ConfirmPasswordForm(instance=comment)
+    return render (request,'board/confirm_password.html',{
+            'form' : form,
+    })
+
+# class CommentDelete(generic.DeleteView):
+#     model = Comment
+#     def get_success_url(self):
+#         return reverse('board:detail',kwargs={'pk': self.object.title_id})
 
