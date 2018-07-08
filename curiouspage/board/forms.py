@@ -9,9 +9,16 @@ class CommentForm(forms.ModelForm):
         # fields = '__all__'
 class BoardForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
+
     class Meta:
         model = Board
-        fields = '__all__'
+        fields = ('author',
+                'password',
+                'subject_type',
+                'title',
+                'content',
+                'file',)
+
 
 class ConfirmPasswordForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

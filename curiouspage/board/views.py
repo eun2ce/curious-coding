@@ -2,7 +2,7 @@
 from django.template import loader, Context
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Board, Comment
+from .models import Board, Comment,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
 from .forms import CommentForm, BoardForm, ConfirmPasswordForm
@@ -42,6 +42,7 @@ def write_form(request):    #보여질 글쓰기 폼
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
         if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
+            board = form.save(commit = False)
             # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
             # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
             form.save()
