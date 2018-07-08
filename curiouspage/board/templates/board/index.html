@@ -64,6 +64,8 @@
       list-style: none;
     }
   </style>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
   <script type="text/javascript">
     function goUrl(url) {
       location.href = url;
@@ -82,20 +84,23 @@
        <li> <div class="write"> <a href="{% url 'board:write_form' %}"><button>글쓰기</button> </a> </div> </li>  </ul>
    
    </div>
-  <ul>
-    {% for Board in board_title %}
-    <tr>
-      <div class="content">
-        <td>
-          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}</a>
-            <p class="content_title">{{Board.title}}</p>
-            <p class="date">[{{Board.updated}}]</p>
-        </td>
-    </tr>
-    </div>
-    {% endfor %}
   </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>제목</th>
+        <th>날짜</th>
+      </tr>
+    </thead>
+    {% for Board in board_title %}
+    <tbody>
+<td> <a href="{% url 'board:detail' Board.id %}" {{Board.title}}</a>
+  {{Board.title}}</td>
+<td>{{Board.created}}</td>
+    </tbody>
+{% endfor %}
+  </table>
 
-  <body>
+</body>
 
 </html>

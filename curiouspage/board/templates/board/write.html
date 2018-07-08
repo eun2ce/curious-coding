@@ -1,8 +1,92 @@
-<form action="" method ="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-            <table>
-            {{form.as_table}}
-            </table>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>글 작성</title>
+    <style>
+        html,body{
+            padding: 0;
+            margin: 0;
+        }
+        ul li{
+            list-style: none;
+            float: left;
+        }
+        input[type=text],input[type=password] {
+            padding: 7px;
+            width: 30vw;
+            font-family: Helvetica, sans-serif;
+            font-size: 1.0em;
+            margin: 0px 0px 10px 0px;
+            border: 2px solid #ccc;
+        }
+        #id_subject_type{
+            position: relative;
+            width: 200px;
+            height: 40px;
+            border: 2px solid #ccc;
+            margin-bottom: 9px;
+        }
+
+        textarea{
+            height: 30vh;
+            width: 35vw;
+            resize: none;
+            overflow:hidden;
+            font-size: 1.0em;
+            margin: 0px 0px 10px 0px;
+            border: 2px solid #ccc;
+        }
+
         
-            <input type="submit" />
-        </form>
+        input[type=submit] {
+            padding:5px 15px; 
+            width: 15vw;
+            background:ccc;
+            border:0 none;
+            cursor:pointer;
+            -webkit-border-radius: 5px;
+            border-radius: 5px; 
+        }
+        #page-wrap {
+            width: 660px;
+            background: white;
+            padding: 20px 50px 20px 50px;
+            margin: 20px auto;
+            min-height: 500px;
+            height: auto !important;
+            height: 500px;
+        }
+        label{
+            float: left;
+            text-align: right;
+            margin-right: 15px;
+            width: 5vw;
+            padding-top: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+        <div id = "page-wrap">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <ul><li><label>주제</label>{{form.subject_type}}</li>
+            <li><label>작성자</label>{{form.author}}</li>
+            <li><label>비밀번호</label>{{form.password}}</li>
+            <li><label>제목</label>{{form.title}}</li>
+            <li><label>내용</label>{{form.content}}</li>  
+            <li><label></label>{{form.file}}</li>  
+            <li><input type="submit" /></li></ul>
+
+ 
+    </form>
+</div>
+
+</body>
+
+</html>

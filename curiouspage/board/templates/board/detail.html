@@ -141,8 +141,6 @@
           color:black;
           font-family:monospace;
         }
-        
-        
         </style>
         <div class="A" style="height:auto; width:90%; border:2px solid blue;">
         {% if board_detail %}
@@ -163,7 +161,7 @@
          </form>
          </div>
         <br>
-        <div class="C" style="height:auto; width:90%; border: ;:2px solid green;">
+        <div class="C" style="height:auto; width:90%; border: 2px solid green;">
         <h3>Comments</h3>
         <a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a>
         </div>
