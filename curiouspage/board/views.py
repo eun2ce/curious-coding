@@ -102,7 +102,7 @@ def commnet_new(request, pk):   ##댓글 남기기
 def comment_edit(request,board_pk,pk):  ##댓글 수정
     comment =get_object_or_404(Comment,pk=pk)
 
-    if request.method == 'POST' :
+    if request.method == 'POST' and request.POST['password'] == comment.password:
         form = CommentForm(request.POST, instance = comment)
         if form.is_valid():
             comment = form.save(commit = False)
