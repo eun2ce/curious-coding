@@ -2,6 +2,7 @@ from django import forms
 from .models import Comment, Board
 
 class CommentForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = Comment
         fields = ('author','password','message',)
