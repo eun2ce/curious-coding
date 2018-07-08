@@ -4,7 +4,7 @@ from .models import Comment, Board
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('author','message')
+        fields = ('author','password','message',)
 
         # fields = '__all__'
 class BoardForm(forms.ModelForm):
