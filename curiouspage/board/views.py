@@ -6,7 +6,7 @@ from .models import Board, Comment,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
 from .forms import CommentForm, BoardForm, ConfirmPasswordForm
-from operator import eq
+from pytz import timezone
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -26,10 +26,10 @@ class DetailView(generic.DetailView):
     context_object_name = 'board_detail'
 
     def get_object(self):
-        statute = super().get_object()
-        statute.count += 1
-        statute.save()
-        return statute
+         statute = super().get_object()
+         statute.count += 1
+         statute.save()
+         return statute
             
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
