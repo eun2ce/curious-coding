@@ -5,50 +5,42 @@
   <meta charset="utf-8">
   <title>게시판..</title>
   <style type="text/css">
-    body,
-    html {
+    body,html {
       margin: 0;
       padding: 0;
     }
+    .nav {
+      width: 100vw;
+      height: 30vh;
+    }
+.title,.content,.write {
+      display: flex;
 
-    .title,
-    .content,
-    .write {
-      display: flex;
-      /*   justify-content:center;*/
-      align-items: center;
-      display: flex;
       margin: auto;
     }
-
-    .title {
-      height: 40px;
-      width: 400px;
-      border: 1px solid blue;
-      background: #ffffff;
-      margin-top: 100px;
-    }
-
-    input {
-      font-size: 16px;
-      width: 325px;
-      padding: 10px;
-      border: 0px;
-      outline: none;
-      float: left
-    }
-
-    .search {
-      width: 55px;
-      height: 40px;
-      border: 0px;
-      background: blue;
-      float: right;
-      color: #ffffff;
-    }
-
-    .content {
-      margin-top: 10px;
+    .title{
+       height: 45px;
+       width: 360px;
+       border: 1px solid blue;
+       background: #ffffff;
+       margin-top: 100px;}
+     input {
+       font-size: 16px;
+       height: 40px;
+       width: 300px;
+       padding:10px;
+       border: 0px;
+       outline:none;
+       float:left}
+     .search {
+       width: 58px;
+       height: 44px;
+       border:0px;
+       background:blue;
+       float:right;
+       color:#ffffff;}
+     .content {
+      margin-top:200px;
       width: 80vw;
       height: 10vh;
       border: 3px solid blue;
@@ -57,35 +49,35 @@
 
     .write {
       width: 10vw;
-      height: 3vh;
-      margin-left: 70vw;
+      height: 8vh;
+      margin-left: 85vw;
+      margin-top:15px;
     }
     li {
       list-style: none;
     }
+    .write_button{
+      width: 68px;
+      height: 44px;
+      border:0px;
+      background:blue;
+      float:right;
+      color:#ffffff;
+    }
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
-  <script type="text/javascript">
-    function goUrl(url) {
-      location.href = url;
-    }
-
-  </script>
 </head>
-
 <body>
-  <div class="nav">
-      <ul><li>
-      <div class="title">
-      <form action="" method="get">
-     <input type ="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
-     <button class="search">검색</button> </form></div></li>
-       <li> <div class="write"> <a href="{% url 'board:write_form' %}"><button>글쓰기</button> </a> </div> </li>  </ul>
-   
-   </div>
-  </ul>
-  <table class="table">
+  <div class="title">
+          <form action="" method="get">
+             <input type ="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
+              <button class="search">검색</button>
+            </form> </div>
+      <div class="write"> <a href="{% url 'board:write_form' %}"><button class="write_button">글쓰기</button> </a> </div>
+</div>
+<div class="container">
+  <table class="table  table-hover">
     <thead>
       <tr>
         <th>제목</th>
@@ -100,7 +92,9 @@
     </tbody>
 {% endfor %}
   </table>
+</div>
 
+    </div>
 </body>
 
 </html>
