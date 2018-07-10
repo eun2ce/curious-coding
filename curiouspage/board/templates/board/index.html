@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
     }
+
     .intro{
       width: 100%;
       height: 19vh; }
@@ -97,7 +98,11 @@
   <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
 </head>
 <body>
-
+<div class="logo">
+  {% load static %}
+  <img src="logo.png" alt="안뜸" width="150" height="80">
+<img src="{% static 'board/img/logo.png' %}" alt="logo" width="150" height="80">
+</div>
   <div class="title">
           <form action="" method="get">
              <input type ="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
