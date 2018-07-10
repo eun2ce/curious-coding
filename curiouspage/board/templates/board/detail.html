@@ -31,15 +31,25 @@
 }
 
 .img_page_text_3{
-  margin-left:640px;
+  margin-left:635px;
   top:36px;
   display:block;
   position:relative;
 }
 
+.img_page_text_3 ul{
+  padding-bottom:5px;
+  padding-left:95px;
+}
+
 .comment_page{
   width:100%;
   height:auto;
+}
+
+.comment_page a{
+  font-size:15px;
+  text-decoration: none;
 }
 
 .comment_page_button1{
@@ -58,8 +68,13 @@
   list-style: none;
 }
 
-.comment_page_button3 a{
-  margin-left:810px;
+.comment_page_button4{
+  margin-left:586px;
+
+}
+.comment_page_button4 div{
+  margin-right:10px;
+  display:inline-block;
 }
 
 </style>
@@ -68,8 +83,8 @@
     <h1>{{ board_detail.title }}</h1>{%if board_detail.file %}
   </div>
     <div class="img_page_2">
-      <img src="{{ board_detail.file.url }}" width="800" height="650">{% else %}
-      <h1>file none.</h1>{% endif %}
+      <img src="{{ board_detail.file.url }}" width="800" height="650">
+      {% endif %}
     </div><br>
 
 <div class="img_page_text_1">
@@ -90,15 +105,15 @@
   </div>
 <div class="comment_page_button2" style="height:auto; width:90%;">
   <ul>{% for comment in board_detail.comment_set.all %}
-    <li>
-      <div class="comment_page_button3" style="height:auto; width:100%; border-bottom:1px dotted;">
-      <strong>작성자:{{comment.author}}</strong><br>{{comment.message}}<br>{{comment.created}}
-      <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
-      <form action="" method="POST">
-      <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
-      </form>
-      </div>
-  </li>{% endfor %}
+<div class="comment_page_button3" style="height:auto; width:100%; border-bottom:1px dotted;">
+  <strong>작성자:{{comment.author}}</strong><br>{{comment.message}}<br>
+<div class="comment_page_button4">
+    <div>{{comment.created}}</div>
+    <div><a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a></div>
+    <div></bu><form action="" method="POST"><a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
+    </form></div>
+</div>
+</div>{% endfor %}
 </ul>{% else %}<h1>no board_detail</h1>{% endif %}
 </div>
 </div>
