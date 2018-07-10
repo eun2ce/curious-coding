@@ -11,57 +11,53 @@
       padding: 0;
     }
 
-    .intro {
-      width: 100%;
-      height: 19vh;
-    }
-
+  .logo{
+    width: 200px;
+    height:auto;
+    margin-top:10px;
+  }
+img{
+  margin-top:70px;
+}
     .title,
     .content,
     .write,
-    .nav {
+    .nav ,.logo{
       display: flex;
-
-      margin: auto;
-    }
+      margin: auto;}
 
     .title {
       height: 45px;
       width: 360px;
       border: 1px solid blue;
-      background: #ffffff;
-      margin-top: 100px;
-    }
+      background:#ffffff;
+      margin-top: 40px;}
 
-    input {
+    input{
       font-size: 16px;
       height: 40px;
       width: 300px;
       padding: 10px;
       border: 0px;
       outline: none;
-      float: left;
-    }
+      float: left;}
 
-    .search {
+    .search{
       width: 58px;
       height: 44px;
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;
-    }
+      color: #ffffff;}
 
-    .write {
+    .write{
       width: 10vw;
       height: 8vh;
       margin-left: 85vw;
-      margin-top: 50px;
-    }
+      margin-top: 50px;}
 
     li {
-      list-style: none;
-    }
+      list-style: none;}
 
     .write_button {
       width: 68px;
@@ -69,53 +65,69 @@
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;
-    }
-
-    .nav li {
+      color: #ffffff;}
+      .nav li {
       list-style: none;
-      float: left;
-    }
+      float: left;}
 
-    .nav {
-      margin-top: 10px;
-      width: 450px;
-      height: 40px;
-      position: ;
 
-      justify-content: center;
-      align-items: center;
-      display: flex;
 
-    }
+       li {
+       list-style: none;
+     }
+     .write_button{
+       width: 68px;
+       height: 44px;
+       border:0px;
+       background:blue;
+       float:right;
+       color:#ffffff;
+     }
 
-    .nav li {
-      width: 100px;
-      height: 75px;
-      display: inline-block;
-      line-height: 65px;
-      text-align: center;
-    }
+     .nav  li{
+     list-style:none;
+     float:left;}
+   .nav{
+     margin-top:10px;
+   width: 450px;
+   height: 40px;
+   position:;
 
-    .nav input[sbumit] {
-      display: block;
-      font-size: 15px;
-      color: blue;
-      transition: 0.3s;
-      text-decoration: none;
-      height: 90px;
-    }
 
-    .nav input[sbumit]:hover {
-      color: black;
-      text-decoration: none;
-    }
+   }
+
+   .nav li{
+   width: 70px;
+   height: 75px;
+   display: inline-block;
+   line-height:65px;
+   text-align: center;}
+
+   .nav a {
+   display: block;
+   font-size: 15px;
+   color: blue;
+   transition: 0.3s;
+   text-decoration: none;
+   height: 90px;}
+
+   .nav a:hover{
+   color:black;
+     text-decoration:none;
+   }
+   .blank{
+
+      height: 1px;
+   }
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
 </head>
 <body>
-<img src="{% static 'board/img/logo.PNG' %}" alt="">
+  <div class="logo">
+    <img src="{% static 'board/img/logo.PNG' %}" alt="">
+  </div>
+
   <div class="title">
     <form action="" method="get">
       <input class = "search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
@@ -124,21 +136,15 @@
   </div>
   <nav class="nav">
     <form action="" method="get">
-      <li>
-        <a href="#">Info</a>
-      </li>
-      <li>
-          <button >all</button>
-      </li>
-      <li>
-        <input type="submit" name = "subject_type" onclick=" Language " value="{{ 'Language' }}">
-      </li>
-      <li>
-          <input type="submit" name = "subject_type" onclick=" Database " value="{{ 'Database' }}">
-      </li>
-      <li>
-        <input type="submit" name = "subject_type" onclick=" Etc " value="{{ 'Etc' }}">
-      </li>
+ <ul>
+   <li><a href="http://localhost:8000/?">Info</a></li>
+   <li><a href="http://localhost:8000/?">All</a></li>
+   <li><a href="http://localhost:8000/?subject_type=Language">Language</a></li>
+
+ <li><a href="http://localhost:8000/?subject_type=Database">Database</a></li>
+
+    <li><a href="http://localhost:8000/?subject_type=Etc">Etc</a></li>
+</ul>
 
     </form>
   </nav>
@@ -154,8 +160,8 @@
         <tr>
           <th>작성자</th>
           <th>제목</th>
-          <th>조회수</th>
           <th>주제</th>
+          <th>조회수</th>
           <th>날짜</th>
         </tr>
       </thead>
@@ -163,12 +169,12 @@
       {% for Board in board_title %}
       <tbody>
           {% if Board.categoryname_id == 2 %}
-        <td>관리자</td>
+        <td><strong>관리자</strong></td>
         <td>
-          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
+          <strong><a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong></td>
         <td> </td>
         <td> </td>
-        <td>{{Board.created|date:"Y-m-d"}}</td>
+        <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
       </tbody>
       {% endif %}
       {% endfor %}
@@ -180,9 +186,9 @@
         <td>{{Board.author}}</td>
         <td>
           <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
-        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}} </td>
-        <td> {{Board.subject_type}}</td>
-        <td>{{Board.created|date:"Y-m-d"}}</td>
+           <td> {{Board.subject_type}}</td>
+           <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
+           <td>{{Board.created|date:"Y-m-d"}}</td>
       </tbody>
       {% endif %}
       {% endfor %}
