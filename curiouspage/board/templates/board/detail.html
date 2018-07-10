@@ -1,124 +1,105 @@
 <style>
-
-        .content_section{
-          display: block;
-          margin: auto;
-          height:70vh;
-          width:80vw;
-          border:2px solid blue;
-        }
-
-        /*.content_section img{
-          display: block;
-
-          width:50vw;
-          height: 40vh;
-        }*/
-        .content_section a{
-          text-decoration: none;
-          font-size: 15px;
-          color:black;
-          font-family:monospace;
-          margin-left: 68vw;
-        }
-
-        button{
-           color:white;
-           background: blue;
-           border: 0;
-        }
-
-        .del_or_mod a{
-          text-decoration: none;
-          font-size: 15px;
-          color:black;
-          font-family:monospace;
-        }
-     button:hover {
-  background-color: skyblue;
+.img_page{
+ width:80%;
+ height:auto;
+ border-radius: 25px;
+ border: 5px double #999;
+ margin: 30px auto;
 }
-        .comment_button{
-          display: block;
-          margin: auto;
-        }
 
-        .comments_box{
-          display: block;
-          margin: auto;
-        }
-  .comment_button a{
-      text-decoration: none;
-   }
-        .comments_box a{
-          text-decoration: none;
-          font-size: 15px;
-          color:black;
-          font-family:monospace;
-        }
+.img_page_1{
+  text-align: center;
+}
 
-        ul li {
-          list-style: none;
-          float: left;
-        }
-      span{
-    font-size:12px;
+.img_page_2 img{
+  margin-left:auto;
+  margin-right:auto;
+  display: block;
+}
 
-      }
-        </style>
-        <script><!--
-          //
-          function enlargeImage1(){
-             image1.height="500"
-             image1.whidth="500"// 커졌을때 이미지 크기
-          }
-          function dropImage1(){
-             image1.height="150"
-              image1.whidth="200" // 보통,작아졌을때 이미지 크기
-          }
-          //-->
-          </script>
-        <div class="content_section">
-        {% if board_detail %}
-        <h3>{{ board_detail.title }}</h3>
-            {{ board_detail.content|linebreaks }}
-        {%if board_detail.file %}
+.img_page_text_1{
+  width:80%;
+  border:double;
+  margin-left:98px;
+}
 
-      <img src="{{ board_detail.file.url }}"  height="170"name="image1" ondblclick="enlargeImage1()" onclick="dropImage1()">
-  <p>첨부파일 더블클릭하면 확대</p>
-        {% else %}
-        <h3>file none.</h3>
-        {% endif %}
+.img_page_text_2{
+  margin-left:auto;
+  margin-right:auto;
+  word-break: break-all;
+  position:relative;
+}
 
+.img_page_text_3{
+  margin-left:640px;
+  top:36px;
+  display:block;
+  position:relative;
+}
 
+.comment_page{
+  width:100%;
+  height:auto;
+}
 
-        <div class="del_or_mod"> <ul>
-          <li><a href="{% url "board:write_eidt" board_detail.pk %}"><button>글수정</button></a> </li>
-          <li>  <a href="{% url "board:write_del" board_detail.pk %}"><button>글삭제</button></a></li>
-        </ul>
+.comment_page_button1{
+  margin-left:40px;
+  border-bottom:double;
+  width:86%;
+  height:auto;
+}
 
-        </div>
+.comment_page_button1 a{
+  font-size:20px;
+  text-decoration: none;
+}
 
+.comment_page_button2 li{
+  list-style: none;
+}
 
-         </div>
-        <br>
-        <div class="comment_button" style="height:auto; width:80vw; border: 2px solid green;">
-        <a href="{% url "board:comment_new" board_detail.pk %}">Go to write your opinion</a>
-        </div>
-        <div class="comments_box" style="height:auto; width:80vw; border:0px solid green;">
-        <ul>
-        {% for comment in board_detail.comment_set.all %}
+.comment_page_button3 a{
+  margin-left:810px;
+}
 
-        <div class="E" style="height:auto; width:90%; border-bottom:1px solid green;">
-      <span><strong>작성자:{{comment.author}} </strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  date: {{comment.created}}</span><br> &nbsp {{comment.message}}
-        </div>
-            <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
-            <form action="" method="POST">
-                    <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
-                 </form>
+</style>
+<div class="img_page">{% if board_detail %}
+  <div class="img_page_1">
+    <h1>{{ board_detail.title }}</h1>{%if board_detail.file %}
+  </div>
+    <div class="img_page_2">
+      <img src="{{ board_detail.file.url }}" width="800" height="650">{% else %}
+      <h1>file none.</h1>{% endif %}
+    </div><br>
 
-        {% endfor %}
-        </ul>
-        {% else %}
-        <h1>no board_detail</h1>
-        {% endif %}
-        </div>
+<div class="img_page_text_1">
+  <div class="img_page_text_2">
+    <h3>{{ board_detail.content|linebreaks }}</h3>
+  </div>
+    <div class="img_page_text_3">
+      <ul>
+      <a href="{% url "board:write_eidt" board_detail.pk %}"><button>글수정</button></a>
+      <a href="{% url "board:write_del" board_detail.pk %}"><button>글삭제</button></a>
+      </ul>
+    </div><br>
+</div><br>
+
+<div class="comment_page">
+  <div class="comment_page_button1">
+    <p><a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a></p>
+  </div>
+<div class="comment_page_button2" style="height:auto; width:90%;">
+  <ul>{% for comment in board_detail.comment_set.all %}
+    <li>
+      <div class="comment_page_button3" style="height:auto; width:100%; border-bottom:1px dotted;">
+      <strong>작성자:{{comment.author}}</strong><br>{{comment.message}}<br>{{comment.created}}
+      <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}"><button>수정</button></a>
+      <form action="" method="POST">
+      <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}"><button>삭제</button></a>
+      </form>
+      </div>
+  </li>{% endfor %}
+</ul>{% else %}<h1>no board_detail</h1>{% endif %}
+</div>
+</div>
+</div>
