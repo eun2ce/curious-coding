@@ -93,9 +93,9 @@
     <li>
       <div class="comment_page_button3" style="height:auto; width:100%; border-bottom:1px dotted;">
       <strong>작성자:{{comment.author}}</strong><br>{{comment.message}}<br>{{comment.created}}
-      <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}"><button>수정</button></a>
+      <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
       <form action="" method="POST">
-      <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}"><button>삭제</button></a>
+      <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
       </form>
       </div>
   </li>{% endfor %}
