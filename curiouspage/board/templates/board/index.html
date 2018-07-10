@@ -112,12 +112,10 @@
     }
   </style>
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
-  
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
 </head>
-
 <body>
-
+<img src="{% static 'board/img/logo.PNG'%}" alt="">
   <div class="title">
     <form action="" method="get">
       <input class = "search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
