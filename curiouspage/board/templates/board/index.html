@@ -112,12 +112,10 @@
     }
   </style>
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'board/bootstrap.css' %}" />
-  
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
 </head>
-
 <body>
-
+<img src="{% static 'board/img/logo.PNG' %}" alt="">
   <div class="title">
     <form action="" method="get">
       <input class = "search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
@@ -161,8 +159,24 @@
           <th>날짜</th>
         </tr>
       </thead>
+      <!-- 공지 -->
       {% for Board in board_title %}
       <tbody>
+          {% if Board.categoryname_id == 2 %}
+        <td>관리자</td>
+        <td>
+          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
+        <td> </td>
+        <td> </td>
+        <td>{{Board.created|date:"Y-m-d"}}</td>
+      </tbody>
+      {% endif %}
+      {% endfor %}
+
+      <!-- 일반글 -->
+      {% for Board in board_title %}
+      <tbody>
+          {% if Board.categoryname_id == 1 %}
         <td>{{Board.author}}</td>
         <td>
           <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
@@ -170,6 +184,7 @@
         <td> {{Board.subject_type}}</td>
         <td>{{Board.created|date:"Y-m-d"}}</td>
       </tbody>
+      {% endif %}
       {% endfor %}
     </table>
   </div>
