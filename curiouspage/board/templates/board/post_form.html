@@ -41,14 +41,14 @@
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             margin-left:7vw;
             width: 20vw;
             background:ccc;
             border:0 none;
             cursor:pointer;
             -webkit-border-radius: 5px;
-            border-radius: 5px; 
+            border-radius: 5px;
         }
         #page-wrap {
             width: 660px;
@@ -67,10 +67,24 @@
             padding-top: 5px;
             font-size: 0.9em;
         }
+        a {
+ display: block;
+   text-align: center;
+   width: 100px;
+   text-decoration: none;
+   border-radius: 4px;}
+
+a.button {
+   color: rgba(30, 22, 54, 0.6);
+   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;}
+
+a.button:hover {
+   color: rgba(255, 255, 255, 0.85);
+   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;}
     </style>
 </head>
-<body>
-        <div id = "page-wrap"> 
+<body><a href="http://localhost:8000/" class="button">목록 보기</a>
+        <div id = "page-wrap">
             <h3> 댓글 작성 </h3>
     <form action="" method ="POST">
         {% csrf_token %}
