@@ -95,6 +95,9 @@ img{
         background-color: white;
         color: blue;
     }
+    .table-font{
+      font-size: 1em;
+    }
 
   </style>
   {% load static %}
@@ -140,7 +143,7 @@ img{
   </div>
   </div>
   <div class="container">
-    <table class="table  table-hover">
+    <table class="table  table-hover table-font" >
       <thead>
         <tr>
           <th>작성자</th>
@@ -166,7 +169,7 @@ img{
 
       <!-- 일반글 -->
       {% for Board in board_title %}
-      <tbody>
+      <tbody >
           {% if Board.categoryname_id == 1 %}
         <td>{{Board.author}}</td>
         <td>
