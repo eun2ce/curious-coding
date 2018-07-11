@@ -92,7 +92,7 @@ a.button:hover {
    box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;}
  </style>
 </style>
-  <a href="http://localhost:8000/" class="button">목록 보기</a>
+<a href="{% url "board:index" %}" calss="button">목록가기</a>
 <div class="img_page">{% if board_detail %}
   <div class="img_page_1">
     <h1>{{ board_detail.title }}</h1>{%if board_detail.file %}
