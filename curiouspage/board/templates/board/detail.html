@@ -1,135 +1,117 @@
 <style>
-.img_page{
- width:80%;
- height:auto;
- border-radius: 25px;
- border: 5px double #999;
- margin: 30px auto;
-}
+  .img_page {
+    width: 80%;
+    height: auto;
+    border: 1px solid #999;
+    margin: 100px auto;
 
-.img_page_1{
-  text-align: center;
-}
+  }
 
-.img_page_2 img{
-  margin-left:auto;
-  margin-right:auto;
-  display: block;
-}
+  .img_page_1 {
+    text-align: center;
+  }
 
-.img_page_text_1{
-  width:80%;
-  border:double;
-  margin-left:98px;
-}
+  .img_page_2 img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
 
-.img_page_text_2{
-  margin-left:auto;
-  margin-right:auto;
-  word-break: break-all;
-  position:relative;
-}
+  .img_page_text_1 {
+    width: 80%;
+    border: double;
+    margin-left: 98px;
+  }
 
-.img_page_text_3{
-  margin-left:635px;
-  top:36px;
-  display:block;
-  position:relative;
-}
+  .img_page_text_2 {
+    margin-left: auto;
+    margin-right: auto;
+    word-break: break-all;
+    position: relative;
+  }
 
-.img_page_text_3 ul{
-  padding-bottom:5px;
-  padding-left:95px;
-}
+  .img_page_text_3 {
+    margin-left: 635px;
+    top: 36px;
+    display: block;
+    position: relative;
+  }
 
-.comment_page{
-  width:100%;
-  height:auto;
-}
+  .img_page_text_3 ul {
+    padding-bottom: 5px;
+    padding-left: 95px;
+  }
 
-.comment_page a{
-  font-size:15px;
-  text-decoration: none;
-}
+  .comment_page {
+    width: 100%;
+    height: auto;
+  }
 
-.comment_page_button1{
-  margin-left:40px;
-  border-bottom:double;
-  width:86%;
-  height:auto;
-}
+  .comment_page a {
+    font-size: 15px;
+    text-decoration: none;
+  }
 
-.comment_page_button1 a{
-  font-size:20px;
-  text-decoration: none;
-}
+  .comment_page_button1 {
+    margin-left: 40px;
+    border-bottom: double;
+    width: 86%;
+    height: auto;
+  }
 
-.comment_page_button2 li{
-  list-style: none;
-}
+  .comment_page_button1 a {
+    font-size: 20px;
+    text-decoration: none;
+  }
 
-.comment_page_button4{
-  margin-left:586px;
+  .comment_page_button2 li {
+    list-style: none;
+  }
 
-}
-.comment_page_button4 div{
-  margin-right:10px;
-  display:inline-block;
-}
-a {
- display: block;
-   text-align: center;
-   width: 100px;
-   text-decoration: none;
-   border-radius: 4px;}
+  .comment_page_button4 {
+    margin-left: 586px;
 
-a.button {
-   color: rgba(30, 22, 54, 0.6);
-   box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;}
+  }
 
-a.button:hover {
-   color: rgba(255, 255, 255, 0.85);
-   box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;}
- </style>
+  .comment_page_button4 div {
+    margin-right: 10px;
+    display: inline-block;
+  }
 </style>
-<a href="{% url "board:index" %}" calss="button">목록가기</a>
+</style>
+<a href="{% url " board:index " %}" calss="button">목록가기</a>
 <div class="img_page">{% if board_detail %}
   <div class="img_page_1">
     <h1>{{ board_detail.title }}</h1>{%if board_detail.file %}
   </div>
-    <div class="img_page_2">
-      <img src="{{ board_detail.file.url }}" width="800" height="650">
-      {% endif %}
-    </div><br>
-
-<div class="img_page_text_1">
-  <div class="img_page_text_2">
-    <h3>{{ board_detail.content|linebreaks }}</h3>
+  <div class="img_page_2">
+    <img src="{{ board_detail.file.url }}" width="800" height="650"> {% endif %}
   </div>
+  <br>
+
+  <div class="img_page_text_1">
+    <div class="img_page_text_2">
+      <h3>{{ board_detail.content|linebreaks }}</h3>
+    </div>
     <div class="img_page_text_3">
       <ul>
-      <a href="{% url "board:write_eidt" board_detail.pk %}"><button>글수정</button></a>
-      <a href="{% url "board:write_del" board_detail.pk %}"><button>글삭제</button></a>
+        <a href="{% url " board:write_eidt " board_detail.pk %}">
+          <button>글수정</button>
+        </a>
+        <a href="{% url " board:write_del " board_detail.pk %}">
+          <button>글삭제</button>
+        </a>
       </ul>
-    </div><br>
-</div><br>
-
-<div class="comment_page">
-  <div class="comment_page_button1">
-    <p><a href="{% url "board:comment_new" board_detail.pk %}">댓글쓰기</a></p>
+    </div>
+    <br>
   </div>
-<div class="comment_page_button2" style="height:auto; width:90%;">
-  <ul>{% for comment in board_detail.comment_set.all %}
-<div class="comment_page_button3" style="height:auto; width:100%; border-bottom:1px dotted;">
-  <strong>작성자:{{comment.author}}</strong><br>{{comment.message}}<br>
-<div class="comment_page_button4">
-    <div>{{comment.created}}</div>
-    <div><a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a></div>
-    <div></bu><form action="" method="POST"><a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
-    </form></div>
+  <br>
 </div>
-</div>{% endfor %}
-</ul>{% else %}<h1>no board_detail</h1>{% endif %}
+<div>
+  {% load disqus_tags %} {% disqus_show_comments %}
+</div>
+</ul>{% else %}
+<h1>no board_detail</h1>{% endif %}
 </div>
 </div>
 </div>

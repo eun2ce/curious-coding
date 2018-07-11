@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
 
+# disqus setting
+    'disqus',
+    'django.contrib.sites',
+]
+DISQUS_WEBSITE_SHORTNAME = 'curiouscoding-1'
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
