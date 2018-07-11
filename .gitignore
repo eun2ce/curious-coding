@@ -1,0 +1,9 @@
+*.pyc
+*~
+__pycache__
+emv
+db.sqlite3
+/static
+.DS_Store
+m migrations
+migrations/
