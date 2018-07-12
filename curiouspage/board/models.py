@@ -18,9 +18,10 @@ class Category(models.Model):   # 공지 유저글 인기글
 #         return self.subjectname
 
 class Board (models.Model):
-    SUBJECT_TYPE_CHOICE = (('Language', 'Language'),
-            ('Database', 'Database'),
-            ('Etc', 'Etc'),)
+    SUBJECT_TYPE_CHOICE = ( ('Notice', 'Notice'),
+                            ('Language', 'Language'),
+                            ('Database', 'Database'),
+                            ('Etc', 'Etc'),)
     password = models.CharField(max_length=50,null=False)  #비밀번호
     author =models.CharField(max_length = 10,null=False) #작성자
     categoryname = models.ForeignKey(Category,default=True,on_delete=models.CASCADE)  #카테고리

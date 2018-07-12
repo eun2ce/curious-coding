@@ -11,54 +11,63 @@
       padding: 0;
     }
 
-  .logo{
-    width: 200px;
-    height:auto;
-    margin-top:10px;
+    .logo {
+      width: 200px;
+      height: auto;
+      margin-top: 10px;
 
-  }
-img{
-  margin-top:70px;
-}
+    }
+
+    img {
+      margin-top: 70px;
+    }
+
     .title,
     .content,
     .write,
-    .nav,.logo {
+    .nav,
+    .logo {
       display: flex;
-      margin: auto;}
+      margin: auto;
+    }
 
     .title {
       height: 45px;
       width: 360px;
       border: 1px solid blue;
-      background:#ffffff;
-      margin-top: 40px;}
+      background: #ffffff;
+      margin-top: 40px;
+    }
 
-    input{
+    input {
       font-size: 16px;
       height: 40px;
       width: 300px;
       padding: 10px;
       border: 0px;
       outline: none;
-      float: left;}
+      float: left;
+    }
 
-    .search{
+    .search {
       width: 58px;
       height: 44px;
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;}
+      color: #ffffff;
+    }
 
-    .write{
+    .write {
       width: 10vw;
       height: 8vh;
       margin-left: 85vw;
-      margin-top: 50px;}
+      margin-top: 50px;
+    }
 
     li {
-      list-style: none;}
+      list-style: none;
+    }
 
     .write_button {
       width: 68px;
@@ -66,39 +75,48 @@ img{
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;}
+      color: #ffffff;
+    }
 
-     .write_button{
-       width: 68px;
-       height: 44px;
-       border:0px;
-       background:blue;
-       float:right;
-       color:#ffffff;}
-     .nav  li{
-     list-style:none;
-     float:left;}
-    .nav{
-      margin-top:10px;
+    .write_button {
+      width: 68px;
+      height: 44px;
+      border: 0px;
+      background: blue;
+      float: right;
+      color: #ffffff;
+    }
+
+    .nav li {
+      list-style: none;
+      float: left;
+    }
+
+    .nav {
+      margin-top: 10px;
       width: 60vw;
-     height: 40px;
-   justify-content: center;
-   align-items: center;
-    font-size: 14px;}
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
 
     input[type=submit] {
 
-       width: 80px;
-        background:ccc;
-        border:0 none;
-        cursor:pointer;
-        background-color: white;
-        color: blue;
+      width: 80px;
+      background: ccc;
+      border: 0 none;
+      cursor: pointer;
+      background-color: white;
+      color: blue;
     }
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
+  <!--disqus comment count 하기위해 script 추가 -->
+  <script id="dsq-count-scr" src="//curiouscoding-1.disqus.com/count.js" async></script>
 </head>
+
 <body>
   <div class="logo">
     <img src="{% static 'board/img/logo.PNG' %}" alt="">
@@ -106,31 +124,31 @@ img{
 
   <div class="title">
     <form action="" method="get">
-      <input class = "search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
+      <input class="search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
       <button class="search">검색</button>
     </form>
   </div>
   <nav class="nav">
-     <form action="" method="get">
+    <form action="" method="get">
 
-       <li>
-           <input type="submit" name = "all_type" onclick=" Language " value="Info">
-       </li>
-       <li>
-           <input type="submit" name = "all_type" onclick=" Language " value="All">
-       </li>
-       <li>
-         <input type="submit" name = "subject_type" onclick=" Language " value="{{ 'Language' }}">
-       </li>
-       <li>
-           <input type="submit" name = "subject_type" onclick=" Database " value="{{ 'Database' }}">
-       </li>
-       <li>
-         <input type="submit" name = "subject_type" onclick=" Etc " value="{{ 'Etc' }}">
-       </li>
+      <li>
+        <input type="submit" name="all_type" onclick=" Language " value="Info">
+      </li>
+      <li>
+        <input type="submit" name="all_type" onclick=" Language " value="All">
+      </li>
+      <li>
+        <input type="submit" name="subject_type" onclick=" Language " value="{{ 'Language' }}">
+      </li>
+      <li>
+        <input type="submit" name="subject_type" onclick=" Database " value="{{ 'Database' }}">
+      </li>
+      <li>
+        <input type="submit" name="subject_type" onclick=" Etc " value="{{ 'Etc' }}">
+      </li>
 
-     </form>
-   </nav>
+    </form>
+  </nav>
 
   <div class="write">
     <a href="{% url 'board:write_form' %}">
@@ -139,7 +157,7 @@ img{
   </div>
   </div>
   <div class="container">
-    <table class="table  table-hover" >
+    <table class="table  table-hover">
       <thead>
         <tr>
           <th>작성자</th>
@@ -152,30 +170,40 @@ img{
       <!-- 공지 -->
       {% for Board in board_title %}
       <tbody>
-          {% if Board.categoryname_id == 2 %}
-        <td><strong>관리자</strong></td>
+        {% if Board.categoryname_id == 2 %}
         <td>
-          <strong><a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong></td>
-        <td> </td>
-        <td> </td>
-        <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
+          <strong>관리자</strong>
+        </td>
+        <td>
+          <!-- comment는 댓글개수 카운트 -->
+          <strong>
+            <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong>
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <strong>{{Board.created|date:"Y-m-d"}}</strong>
+        </td>
       </tbody>
-      {% endif %}
-      {% endfor %}
+      {% endif %} {% endfor %}
 
       <!-- 일반글 -->
       {% for Board in board_title %}
-      <tbody >
-          {% if Board.categoryname_id == 1 %}
+      <tbody>
+        {% if Board.categoryname_id == 1 %}
         <td>{{Board.author}}</td>
+              <!-- comment는 댓글개수 카운트 -->
         <td>
-          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
-           <td> {{Board.subject_type}}</td>
-           <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
-           <td>{{Board.created|date:"Y-m-d"}}</td>
+          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}
+            <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
+        </td>
+        </td>
+        <td> {{Board.subject_type}}</td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
+        <td>{{Board.created|date:"Y-m-d"}}</td>
       </tbody>
-      {% endif %}
-      {% endfor %}
+      {% endif %} {% endfor %}
     </table>
   </div>
   </div>
