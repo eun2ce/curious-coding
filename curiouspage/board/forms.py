@@ -10,6 +10,10 @@ from .models import Board
         # fields = '__all__'
 class BoardForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
+    sj_type =  SUBJECT_TYPE_CHOICE = (('Language', 'Language'),
+                                    ('Database', 'Database'),
+                                    ('Etc', 'Etc'),)
+    subject_type = forms.ChoiceField(choices = sj_type, label="", initial='', widget=forms.Select(), required=True)
     class Meta:
         model = Board
         fields = ('author',
@@ -18,6 +22,7 @@ class BoardForm(forms.ModelForm):
                 'title',
                 'content',
                 'file',)
+        
 
 class ConfirmPasswordForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

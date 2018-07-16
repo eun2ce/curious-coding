@@ -11,54 +11,63 @@
       padding: 0;
     }
 
-  .logo{
-    width: 200px;
-    height:auto;
-    margin-top:10px;
+    .logo {
+      width: 200px;
+      height: auto;
+      margin-top: 10px;
 
-  }
-img{
-  margin-top:70px;
-}
+    }
+
+    img {
+      margin-top: 70px;
+    }
+
     .title,
     .content,
     .write,
-    .nav,.logo {
+    .nav,
+    .logo {
       display: flex;
-      margin: auto;}
+      margin: auto;
+    }
 
     .title {
       height: 45px;
       width: 360px;
       border: 1px solid blue;
-      background:#ffffff;
-      margin-top: 40px;}
+      background: #ffffff;
+      margin-top: 40px;
+    }
 
-    input{
+    input {
       font-size: 16px;
       height: 40px;
       width: 300px;
       padding: 10px;
       border: 0px;
       outline: none;
-      float: left;}
+      float: left;
+    }
 
-    .search{
+    .search {
       width: 58px;
       height: 44px;
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;}
+      color: #ffffff;
+    }
 
-    .write{
+    .write {
       width: 10vw;
       height: 8vh;
       margin-left: 85vw;
-      margin-top: 50px;}
+      margin-top: 50px;
+    }
 
     li {
-      list-style: none;}
+      list-style: none;
+    }
 
     .write_button {
       width: 68px;
@@ -66,39 +75,58 @@ img{
       border: 0px;
       background: blue;
       float: right;
-      color: #ffffff;}
+      color: #ffffff;
+    }
 
-     .write_button{
-       width: 68px;
-       height: 44px;
-       border:0px;
-       background:blue;
-       float:right;
-       color:#ffffff;}
-     .nav  li{
-     list-style:none;
-     float:left;}
-    .nav{
-      margin-top:10px;
+    .write_button {
+      width: 68px;
+      height: 44px;
+      border: 0px;
+      background: blue;
+      float: right;
+      color: #ffffff;
+    }
+
+    .nav li {
+      list-style: none;
+      float: left;
+    }
+
+    .nav {
+      margin-top: 10px;
       width: 60vw;
-     height: 40px;
-   justify-content: center;
-   align-items: center;
-    font-size: 14px;}
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+    }
 
     input[type=submit] {
 
-       width: 80px;
-        background:ccc;
-        border:0 none;
-        cursor:pointer;
-        background-color: white;
-        color: blue;
+      width: 80px;
+      background: ccc;
+      border: 0 none;
+      cursor: pointer;
+      background-color: white;
+      color: blue;
+    }
+
+    /*select box css 추가*/
+
+    #seledtBox {
+      position: relative;
+      border: none;
+    }
+    .warning{
+
     }
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
+  <!--disqus comment count 하기위해 script 추가 -->
+  <script id="dsq-count-scr" src="//curiouscoding-1.disqus.com/count.js" async></script>
 </head>
+
 <body>
   <div class="logo">
     <img src="{% static 'board/img/logo.PNG' %}" alt="">
@@ -106,31 +134,37 @@ img{
 
   <div class="title">
     <form action="" method="get">
-      <input class = "search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
+      <input class="search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
       <button class="search">검색</button>
     </form>
   </div>
+  <a href="{% url 'board:cc_suggestion' %}">
+      <button >suggestion</button>
+  </a>
+  <div class="warning">
+<p>“인터넷 댓글로서 특정인의 실명을 거론하여 특정인의 명예를 훼손하거나, 또는 실명을 거론하지는 않더라도 그 표현의 내용을 주위사정과 종합하여 볼 때 그 표시가 특정인을 지목하는 것임을 알아차릴 수 있는 경우에는, 그와 같은 악의적 댓글을 단 행위자는 원칙적으로 특정인에 대한 명예훼손 또는 모욕의 죄책을 면하기 어렵다 할 것이다(헌법재판소 2007헌마461 결정 참조)”</p>
+<p>어떠한 경우에라도 타인을 비방하는 글에 대해 그냥 지나치지 않을 것이며, 그에맞는 처벌로 강경대응 할 것을 미리 말씀드립니다.</p>
+   </div>
   <nav class="nav">
-     <form action="" method="get">
+    <form action="" method="get">
+      <li>
+        <input type="submit" name="all_type" onclick=" Language " value="Info">
+      </li>
+      <li>
+        <input type="submit" name="all_type" onclick=" Language " value="All">
+      </li>
+      <li></li>
+        <input type="submit" name="subject_type" onclick=" Language " value="{{ 'Language' }}">
+      </li>
+      <li>
+        <input type="submit" name="subject_type" onclick=" Database " value="{{ 'Database' }}">
+      </li>
+      <li>
+        <input type="submit" name="subject_type" onclick=" Etc " value="{{ 'Etc' }}">
+      </li>
 
-       <li>
-           <input type="submit" name = "all_type" onclick=" Language " value="Info">
-       </li>
-       <li>
-           <input type="submit" name = "all_type" onclick=" Language " value="All">
-       </li>
-       <li>
-         <input type="submit" name = "subject_type" onclick=" Language " value="{{ 'Language' }}">
-       </li>
-       <li>
-           <input type="submit" name = "subject_type" onclick=" Database " value="{{ 'Database' }}">
-       </li>
-       <li>
-         <input type="submit" name = "subject_type" onclick=" Etc " value="{{ 'Etc' }}">
-       </li>
-
-     </form>
-   </nav>
+    </form>
+  </nav>
 
   <div class="write">
     <a href="{% url 'board:write_form' %}">
@@ -139,51 +173,63 @@ img{
   </div>
   </div>
   <div class="container">
-    <table class="table  table-hover" >
+    <table class="table  table-hover">
       <thead>
         <tr>
-          <th>작성자</th>
+            <th>
+                <form action="" method="get">
+                  <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
+                    <option hidden>구분</option>
+                    <option value="{{ '' }}">전체보기</option>
+                    <option value="{{ 'Notice' }}">Notice</option>
+                    <option value="{{ 'Language' }}">Language</option>
+                    <option value="{{ 'Database' }}">Database</option>
+                    <option value="{{ 'Etc' }}">Etc</option>
+                  </select>
+                </form>
+              </th>
           <th>제목</th>
-          <th>주제            <form action="" method="get">
-              <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
-                  <option selected>--선택--</option>
-                  <option value="{{ '' }}">All</option>
-                <option value="{{ 'Language' }}">Language</option>
-                <option value="{{ 'Database' }}">Database</option>
-                <option value="{{ 'Etc' }}">Etc</option>
-              </select>
-            </form></th>
-          <th>조회수</th>
+          <th>작성자</th>
           <th>날짜</th>
+          <th>조회수</th>
         </tr>
       </thead>
       <!-- 공지 -->
       {% for Board in board_title %}
       <tbody>
-          {% if Board.categoryname_id == 2 %}
-        <td><strong>관리자</strong></td>
+        {% if Board.subject_type == "Notice" %}
         <td>
-          <strong><a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong></td>
-        <td> </td>
-        <td> </td>
+            <strong>Notice</strong>
+        </td>
+        <td>
+          <!-- comment는 댓글개수 카운트 -->
+          <strong>
+            <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong>
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
+        </td>
+        <td><strong>{{Board.author}}</strong></td>
         <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
-      {% endif %}
-      {% endfor %}
+      {% endif %} {% endfor %}
 
       <!-- 일반글 -->
       {% for Board in board_title %}
-      <tbody >
-          {% if Board.categoryname_id == 1 %}
-        <td>{{Board.author}}</td>
+      <tbody>
+        {% if Board.subject_type != "Notice" %}
+        <td> {{Board.subject_type}}</td>
+
+        <!-- comment는 댓글개수 카운트 -->
         <td>
-          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</td>
-           <td> {{Board.subject_type}}</td>
-           <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
-           <td>{{Board.created|date:"Y-m-d"}}</td>
+          <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}
+            <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
+        </td>
+        </td>
+        <td>{{Board.author}}</td>
+        <td>{{Board.created|date:"Y-m-d"}}</td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
-      {% endif %}
-      {% endfor %}
+      {% endif %} {% endfor %}
     </table>
   </div>
   </div>

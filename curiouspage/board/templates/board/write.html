@@ -86,7 +86,7 @@ a.button:hover {
 </head>
 
 <body>
-  <a href="http://localhost:8000/" class="button">목록 보기</a>
+  <a href="{% url 'board:index' %}" class="button">목록 보기</a>
         <div id = "page-wrap">
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
