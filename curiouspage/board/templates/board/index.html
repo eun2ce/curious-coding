@@ -110,6 +110,13 @@
       background-color: white;
       color: blue;
     }
+
+    /*select box css 추가*/
+
+    #seledtBox {
+      position: relative;
+      border: none;
+    }
   </style>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
@@ -160,19 +167,30 @@
     <table class="table  table-hover">
       <thead>
         <tr>
-          <th>작성자</th>
+            <th>
+                <form action="" method="get">
+                  <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
+                    <option hidden>구분</option>
+                    <option value="{{ '' }}">전체보기</option>
+                    <option value="{{ 'Notice' }}">Notice</option>
+                    <option value="{{ 'Language' }}">Language</option>
+                    <option value="{{ 'Database' }}">Database</option>
+                    <option value="{{ 'Etc' }}">Etc</option>
+                  </select>
+                </form>
+              </th>
           <th>제목</th>
-          <th>주제</th>
-          <th>조회수</th>
+          <th>작성자</th>
           <th>날짜</th>
+          <th>조회수</th>
         </tr>
       </thead>
       <!-- 공지 -->
       {% for Board in board_title %}
       <tbody>
-        {% if Board.categoryname_id == 2 %}
+        {% if Board.subject_type == "Notice" %}
         <td>
-          <strong>관리자</strong>
+            <strong>Notice</strong>
         </td>
         <td>
           <!-- comment는 댓글개수 카운트 -->
@@ -180,28 +198,27 @@
             <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}</strong>
           <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
         </td>
-        <td></td>
-        <td></td>
-        <td>
-          <strong>{{Board.created|date:"Y-m-d"}}</strong>
-        </td>
+        <td><strong>{{Board.author}}</strong></td>
+        <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
       {% endif %} {% endfor %}
 
       <!-- 일반글 -->
       {% for Board in board_title %}
       <tbody>
-        {% if Board.categoryname_id == 1 %}
-        <td>{{Board.author}}</td>
-              <!-- comment는 댓글개수 카운트 -->
+        {% if Board.subject_type != "Notice" %}
+        <td> {{Board.subject_type}}</td>
+
+        <!-- comment는 댓글개수 카운트 -->
         <td>
           <a href="{% url 'board:detail' Board.id %}" {{Board.title}}/a>{{Board.title}}
             <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
         </td>
         </td>
-        <td> {{Board.subject_type}}</td>
-        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
+        <td>{{Board.author}}</td>
         <td>{{Board.created|date:"Y-m-d"}}</td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
       {% endif %} {% endfor %}
     </table>
