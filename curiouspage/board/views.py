@@ -87,6 +87,9 @@ def write_eidt(request,pk):
 
 def SuggestionView(request):
     return render (request,'board/Suggestion.html')
+    
+def InfoView(request):
+    return render (request,'board/info.html')
 # def commnet_new(request, pk):   ##댓글 남기기
 #     board = get_object_or_404(Board,pk=pk)
 #     if request.method == 'POST':
