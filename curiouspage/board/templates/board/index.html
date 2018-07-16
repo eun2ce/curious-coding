@@ -90,6 +90,7 @@
     .nav li {
       list-style: none;
       float: left;
+      margin: 0 50px;
     }
 
     .nav {
@@ -101,15 +102,16 @@
       font-size: 14px;
     }
 
-    input[type=submit] {
-
+    a {
       width: 80px;
       background: ccc;
       border: 0 none;
       cursor: pointer;
       background-color: white;
       color: blue;
+      text-decoration:none;
     }
+    a:hover { text-decoration:none !important }
 
     /*select box css 추가*/
 
@@ -144,19 +146,13 @@
    </div>
   <nav class="nav">
       <li>
-          <a href="{% url 'board:info' %}">
-              <button >소개</button>
-          </a>
+          <a href="{% url 'board:info' %}">소개</a>
       </li>
       <li>
-          <a href="{% url 'board:index' %}">
-              <button >게시판</button>
-          </a>
+          <a href="{% url 'board:index' %}">게시판</a>
       </li>
       <li>
-          <a href="{% url 'board:cc_suggestion' %}">
-              <button >건의</button>
-          </a>
+          <a href="{% url 'board:cc_suggestion' %}">건의</a>
       </li>
   </nav>
 

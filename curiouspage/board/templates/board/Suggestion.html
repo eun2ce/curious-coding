@@ -1,29 +1,105 @@
 <!-- Suggestion -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head>{% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-            .api{
-                width: 80%;
-                margin-left: 130px;
-              }
+        .api {
+            width: 80%;
+            margin-left: 130px;
+        }
+        /*suggestion - top*/
+
+        .suggestion-margin {
+            margin-left: 130px;
+            height: 10vh;
+        }
+
+        .suggestion-main {
+            width: 20%;
+            float: left;
+        }
+
+        .suggestion-bg {
+            margin-left: 110px;
+        }
+
+        .suggestion-content {
+            float: left;
+            width: 80%;
+        }
+
+        /*nav*/
+
+        .nav li {
+            list-style: none;
+            float: left;
+            margin: 0 50px;
+        }
+
+        .nav {
+            margin-top: 10px;
+            width: 60vw;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        a {
+            width: 80px;
+            background: ccc;
+            border: 0 none;
+            cursor: pointer;
+            background-color: white;
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none !important
+        }
     </style>
 </head>
-<body>
-        <a href="{% url "board:index" %}" class="button">목록가기</a>
-        <h4>curious coding은 남서울대학교 학부생들의 코딩실력을 향상시키고, 편의를 제공하고자 만든 페이지 입니다.</h4>
-        <h4>더 좋은 발전을 위해 건의사항을 남겨주시면 아이디어기여자에 이름이 올라가는 혜택을 드립니다.</h4>
-        <h5>코딩할 때 듣기좋은 음악도 추천받아요. curious coding개발자들이 노래듣는걸 좋아합니다.</h5>
-        <h4>입력 양식</h4>
-        <p>익명의 경우 : 이메일 작성 시, 회신을 받을 수 있는 자신의 이메일로 적어주세요.</p>
-        <p>식별이 안될경우 아쉽게도 기여자가 될 수 없어요. 아이디어는 CC게시판에 적용될 수 있어요.</p>
 
-<div class="api">
+<body>
+    <nav class="nav">
+        <li><a href="{% url 'board:info' %}">소개</a></li>
+        <li><a href="{% url 'board:index' %}">게시판</a></li>
+        <li><a href="{% url 'board:cc_suggestion' %}">건의</a></li>
+    </nav>
+    <h2 class="suggestion-margin">가치없는 생각은 없습니다.</h2>
+    <br>
+    <br>
+    <div class="suggestion-bg">
+        <img src="{% static 'board/img/suggestionpage/suggestion-bg.jpg' %}" alt="" width=90% height=100%>
+    </div>
+    <br>
+    <div class="suggestion-margin">
+            <div class="suggestion-main">
+                <h3>기여자</h3>
+            </div>
+            <div class="suggestion-content">
+                <p>예 ) [남서울대 컴퓨터소프트웨어학과 OOO]  ㅁㅁㅁ 제공</p>
+            </div>
+        </div>
+    <div class="suggestion-margin">
+        <div class="suggestion-main">
+            <h3>건의</h3>
+        </div>
+        <div class="suggestion-content">
+            <p>NDF는 curious coding을 통해 미래 개발자들의 코딩실력을 향상시키고, 편의를 제공하고자 합니다.
+                <br> 더 좋은 발전을 위해 건의사항을 남겨주시면 기여자혜택을 드립니다.</p>
+        </div>
+    </div>
+    <br><br>
+    <div class="api">
         {% load disqus_tags %} {% disqus_show_comments %}
-      </div>
+    </div>
 </body>
+
 </html>
