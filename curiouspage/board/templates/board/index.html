@@ -144,7 +144,15 @@ img{
         <tr>
           <th>작성자</th>
           <th>제목</th>
-          <th>주제</th>
+          <th>주제            <form action="" method="get">
+              <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
+                  <option selected>--선택--</option>
+                  <option value="{{ '' }}">All</option>
+                <option value="{{ 'Language' }}">Language</option>
+                <option value="{{ 'Database' }}">Database</option>
+                <option value="{{ 'Etc' }}">Etc</option>
+              </select>
+            </form></th>
           <th>조회수</th>
           <th>날짜</th>
         </tr>
