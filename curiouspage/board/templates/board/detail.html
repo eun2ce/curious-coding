@@ -86,10 +86,12 @@
       <div class="subcontents" style="border-bottom:1px dotted" >    <!--제목/날짜/카테고리-->
   <ul><font size ="5">{{ board_detail.title }} </font> | {{board_detail.subject_type}}
     <!-- 글수정 글삭제 button 태그 삭제하고 button board_btn class추가 -->
+    {% if board_detail.subject_type != "Notice" %}
     <div class="dd">
        <a href="{% url "board:write_del" board_detail.pk %}"  class="button board_btn">글삭제</a>
        <a href="{% url "board:write_eidt" board_detail.pk %}" class="button board_btn">글수정</a>
     </div>
+    {% endif %}
 </ul>
       </div>
       <div class="author">
