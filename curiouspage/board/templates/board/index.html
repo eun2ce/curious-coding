@@ -148,20 +148,16 @@
   <nav class="nav">
     <form action="" method="get">
       <li>
-        <input type="submit" name="all_type" onclick=" Language " value="Info">
+        <a href="{% url 'board:cc_suggestion' %}">
+            suggestion
+        </a>
       </li>
       <li>
-        <input type="submit" name="all_type" onclick=" Language " value="All">
+
+            suggestion
+        </a>
       </li>
-      <li></li>
-        <input type="submit" name="subject_type" onclick=" Language " value="{{ 'Language' }}">
-      </li>
-      <li>
-        <input type="submit" name="subject_type" onclick=" Database " value="{{ 'Database' }}">
-      </li>
-      <li>
-        <input type="submit" name="subject_type" onclick=" Etc " value="{{ 'Etc' }}">
-      </li>
+
 
     </form>
   </nav>
