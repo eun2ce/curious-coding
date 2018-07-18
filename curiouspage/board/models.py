@@ -29,7 +29,7 @@ class Board (models.Model):
         'Subject Type', max_length=10, default='Etc', choices=SUBJECT_TYPE_CHOICE) #글주제
     title=models.CharField(max_length=80,null=False) #글제목
     content=models.TextField(null=False)    #글내용
-    file=models.ImageField(blank=True, null=True, upload_to='media/%Y/%m/%d/') # 파일
+    file=models.ImageField(blank=True, default=None,null=True, upload_to='media/%Y/%m/%d/') # 파일
     count = models.PositiveIntegerField(default=0)  #조회수
     created = models.DateTimeField(auto_now_add=True) #글생성
     

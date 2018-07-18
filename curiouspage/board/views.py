@@ -29,11 +29,17 @@ class DetailView(generic.DetailView):
     context_object_name = 'board_detail'
 
     def get_object(self):
-         statute = super().get_object()
-         statute.count += 1
-         statute.save()
-         return statute
-            
+        board = super().get_object()
+        board.count += 1
+        board.save()
+        return board
+    # def get_context_data(self, **kwargs):
+    #     confirm_pw = self.request.GET.get('confirm_pw')
+    #     context = super(DetailView, self).get_context_data(**kwargs)
+    #     if self.object.password == confirm_pw :
+    #         self.object.delete()
+    #         return HttpResponseRedirect(reverse('board:index'))
+    
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
     if request.method == 'POST' and request.POST['password'] == board.password:
