@@ -105,6 +105,8 @@
 
 <body>
 
+
+
     <div id="page-wrap">
         <form name="content_form" action="" method="POST" enctype="multipart/form-data" target ="_opener">
             {% csrf_token %}
@@ -116,6 +118,7 @@
                 <li><label>내용</label>{{form.content}}</li>
                 <li><label></label>{{form.file}}</li>
                 <input type="submit" onclick='checkForm();' />
+
                 <input type="reset" value="초기화" />
             </li>
         </ul>
@@ -136,3 +139,4 @@
 </script>
 </body>
 </html>
+
