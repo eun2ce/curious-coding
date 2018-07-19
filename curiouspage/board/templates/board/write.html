@@ -97,36 +97,35 @@
 </head>
 
 <body>
+    
     <div id="page-wrap">
-        <form name="content_form" action="" method="POST" enctype="multipart/form-data" target="_opener">
+        <form name="content_form" action="" method="POST" enctype="multipart/form-data" target ="_opener">
             {% csrf_token %}
             <ul>
-                <li>
-                    <label>주제</label>{{form.subject_type}}</li>
-                <li>
-                    <label>작성자</label>{{form.author}}</li>
-                <li>
-                    <label>비밀번호</label>{{form.password}}</li>
-                <li>
-                    <label>제목</label>{{form.title}}</li>
-                <li>
-                    <label>내용</label>{{form.content}}</li>
-                <li>
-                    <label></label>{{form.file}}</li>
-                <li>
-                    <input type="submit" onclick='window.close(); checkForm(); ' />
-                </li>
-            </ul>
-        </form>
-    </div>
-    <script>
-        // iframe parent window 
-        function checkForm() {
-
-            document.content_form.target = "_opener";
-            document.content_form.submit();
-        }
-    </script>
+                <li><label>주제</label>{{form.subject_type}}</li>
+                <li><label>작성자</label>{{form.author}}</li>
+                <li><label>비밀번호</label>{{form.password}}</li>
+                <li><label>제목</label>{{form.title}}</li>
+                <li><label>내용</label>{{form.content}}</li>
+                <li><label></label>{{form.file}}</li>
+                <input type="submit" onclick='checkForm();' />
+            </li>
+        </ul>
+        
+    </form>
+</div>
+<script>
+    // iframe parent window 
+    function checkForm() {
+        document.content_form.target = "_opener";
+        document.content_form.submit();
+    
+        setTimeout.bind(this)(function(){
+            window.close();
+        },0);
+        
+    }
+</script>
 </body>
 
 </html>
