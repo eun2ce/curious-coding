@@ -80,7 +80,6 @@
           }
     
      </style>
-    </style>
     <a href="{% url "board:index" %}" class="button">목록가기</a>
       <div class="img_page">{% if board_detail %}
       <div class="subcontents" style="border-bottom:1px dotted" >    <!--제목/날짜/카테고리-->
@@ -88,8 +87,10 @@
     <!-- 글수정 글삭제 button 태그 삭제하고 button board_btn class추가 -->
     {% if board_detail.subject_type != "Notice" %}
     <div class="dd">
+
        <a href="{% url "board:write_del" board_detail.pk %}"  class="button board_btn">글삭제</a>
-       <a href="{% url "board:write_eidt" board_detail.pk %}" class="button board_btn">글수정</a>
+       <a href="{% url "board:write_eidt" board_detail.pk %}" class="button board_btn"
+       onclick="window.open(this.href,'팝업창','width=800,height=582'); return false;">글수정</a>
     </div>
     {% endif %}
 </ul>
