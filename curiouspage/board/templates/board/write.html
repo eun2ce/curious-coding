@@ -35,6 +35,9 @@
             border: 2px solid #ccc;
             margin-bottom: 9px;
         }
+        #id_title{
+          max-len
+        }
 
         textarea {
             height: 30vh;
@@ -46,15 +49,19 @@
             border: 2px solid #ccc;
         }
 
-
-        input[type=submit] {
+  input[type=submit]{
+    margin-left: 35px;
+  }
+        input[type=submit],  input[type=reset] {
             padding: 5px 15px;
-            width: 15vw;
+            width: 10vw;
             background: ccc;
             border: 0 none;
             cursor: pointer;
             -webkit-border-radius: 5px;
             border-radius: 5px;
+            margin-top:380px;
+
         }
 
         #page-wrap {
@@ -97,7 +104,9 @@
 </head>
 
 <body>
-    
+
+
+
     <div id="page-wrap">
         <form name="content_form" action="" method="POST" enctype="multipart/form-data" target ="_opener">
             {% csrf_token %}
@@ -109,22 +118,25 @@
                 <li><label>내용</label>{{form.content}}</li>
                 <li><label></label>{{form.file}}</li>
                 <input type="submit" onclick='checkForm();' />
+
+                <input type="reset" value="초기화" />
             </li>
         </ul>
-        
+
     </form>
 </div>
 <script>
-    // iframe parent window 
+    // iframe parent window
     function checkForm() {
         document.content_form.target = "_opener";
         document.content_form.submit();
-    
+
         setTimeout.bind(this)(function(){
             window.close();
         },0);
-        
+
     }
 </script>
 </body>
 </html>
+

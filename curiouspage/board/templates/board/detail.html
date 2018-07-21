@@ -1,85 +1,92 @@
-<style>
-    .img_page{
-     width:80%;
-     height:auto;
-     border: 1px solid #999;
-     margin: 0 auto;}
-.subcontents{
-  width: 97%;
-  height: 45px;
- margin: 0 auto;
- margin-left:10px;
-}
-.author{
-  width: 97%;
-  height: 50px;
-  margin-left:10px;
-}
-.date{
-  margin-top:-22px;
-  text-align: right;
-  font-size: 13px;
-}
-    .img_page_1{
-      text-align: center;
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>게시글</title>
+    <style>
+        .img_page{
+         width:80%;
+         height:auto;
+         border: 1px solid #999;
+         margin: 0 auto;}
+    .subcontents{
+      width: 97%;
+      height: 45px;
+     margin: 0 auto;
+     margin-left:10px;
     }
-    .img_page_2 img{
-      margin-left:auto;
-      margin-right:auto;
-      display: block;
-      width: 40vw;
-      height: 50vh;
+    .author{
+      width: 97%;
+      height: 50px;
+      margin-left:10px;
     }
-.span{
-  text-align: right;
-}
-    .img_page_text_1{
-      width:98%;
-     font-size: 15px;
-    margin-left: 10px;
-    }
-    .img_page_text_2{
-      margin-left:auto;
-      margin-right:auto;
-      word-break: break-all;
-      position:relative;
-    }
-    .img_page_text_3{
-     margin-right:100px;
-      top:36px;
-      width: 100%;
-      position:relative;
-    }
-    .img_page_text_3 ul{
-      padding-bottom:5px;
-      width: 50vw;
-    }
-    
-    .dd{
+    .date{
+      margin-top:-22px;
       text-align: right;
-      margin-top:-40px;
+      font-size: 13px;
     }
-    .api{
-      width: 80%;
-      margin-left: 130px;
+        .img_page_1{
+          text-align: center;
+        }
+        .img_page_2 img{
+          margin-left:auto;
+          margin-right:auto;
+          display: block;
+          width: 40vw;
+          height: 50vh;
+        }
+    .span{
+      text-align: right;
     }
-        /* 목록가기 버튼 css 추가 */
-        .button{
-          width: 5vw;
-          padding:5px;
-          margin: 10px;
-          background:blue;
-          text-align:center;
-          float:left;
-          text-decoration:none;
-          color:#ffffff;}
-    
-          /* 글쓰기 버튼은 오른쪽으로 보내기 위해 */
-          .board_btn{
-            float: right;
-          }
-    
-     </style>
+        .img_page_text_1{
+          width:98%;
+         font-size: 15px;
+        margin-left: 10px;
+        }
+        .img_page_text_2{
+          margin-left:auto;
+          margin-right:auto;
+          word-break: break-all;
+          position:relative;
+        }
+        .img_page_text_3{
+         margin-right:100px;
+          top:36px;
+          width: 100%;
+          position:relative;
+        }
+        .img_page_text_3 ul{
+          padding-bottom:5px;
+          width: 50vw;
+        }
+
+        .dd{
+          text-align: right;
+          margin-top:-40px;
+        }
+        .api{
+          width: 80%;
+          margin-left: 130px;
+        }
+            /* 목록가기 버튼 css 추가 */
+            .button{
+              width: 5vw;
+              padding:5px;
+              margin: 10px;
+              background:blue;
+              text-align:center;
+              float:left;
+              text-decoration:none;
+              color:#ffffff;}
+
+              /* 글쓰기 버튼은 오른쪽으로 보내기 위해 */
+              .board_btn{
+                float: right;
+              }
+
+         </style>
+  </head>
+  <body>
     <a href="{% url "board:index" %}" class="button">목록가기</a>
       <div class="img_page">{% if board_detail %}
       <div class="subcontents" style="border-bottom:1px dotted" >    <!--제목/날짜/카테고리-->
@@ -120,3 +127,6 @@
 </div>
 </ul>{% else %}
 <h1>no board_detail</h1>{% endif %}
+
+  </body>
+</html>

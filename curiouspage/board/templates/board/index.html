@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <title>게시판..</title>
+
+  <title>Curious Coding</title>
+
   <style type="text/css">
 
     body,
@@ -124,18 +126,7 @@
       position: relative;
       border: none;
     }
-    .warning{
 
-        width: 30%;
-        height: auto;
-        font-size:10px;
-
-        margin-top: -280px;
-        margin-left: 20px;
-    }
-    .waring img{
-
-    }
     a img {
   position: fixed;
   margin-top: 550px;
@@ -213,6 +204,12 @@ ol, ul {
     top: 13px;
   }
 
+.wrapper{
+  height: 130px;
+  margin-top:-230px;
+  margin-left: 400px;
+}
+
   </style>
 
   {% load static %}
@@ -231,7 +228,7 @@ ol, ul {
   </a>
 
   <div class="logo">
-    <img src="{% static 'board/img/logo.PNG' %}" alt="">
+    <img src="{% static 'board/img/index/logo.PNG' %}" alt="">
   </div>
 
   <div class="title">
@@ -245,13 +242,16 @@ ol, ul {
           <div class="bk">
               <span class="menuBtn">
                 <svg version="1.1" x="0px" y="0px"
-                	 viewBox="1 1 15 15" enable-background="new 1 1 15 15" xml:space="preserve">
+
+                    viewBox="1 1 15 15" enable-background="new 1 1 15 15" xml:space="preserve">
                 <g>
-                	<path fill="#000000" d="M15,1H2C1.4,1,1,1.4,1,2v13c0,0.6,0.4,1,1,1h13c0.6,0,1-0.4,1-1V2C16,1.4,15.6,1,15,1z M15,15H2V2h13V15z"
-                		/>
-                	<path fill="#000000" d="M4.5,9h8C12.8,9,13,8.8,13,8.5C13,8.2,12.8,8,12.5,8h-8C4.2,8,4,8.2,4,8.5C4,8.8,4.2,9,4.5,9z"/>
-                	<path fill="#000000" d="M4.5,6h8C12.8,6,13,5.8,13,5.5S12.8,5,12.5,5h-8C4.2,5,4,5.2,4,5.5S4.2,6,4.5,6z"/>
-                	<path fill="#000000" d="M4.5,12h8c0.3,0,0.5-0.2,0.5-0.5S12.8,11,12.5,11h-8C4.2,11,4,11.2,4,11.5S4.2,12,4.5,12z"/>
+                   <path fill="#000000" d="M15,1H2C1.4,1,1,1.4,1,2v13c0,0.6,0.4,1,1,1h13c0.6,0,1-0.4,1-1V2C16,1.4,15.6,1,15,1z M15,15H2V2h13V15z"
+                      />
+                   <path fill="#000000" d="M4.5,9h8C12.8,9,13,8.8,13,8.5C13,8.2,12.8,8,12.5,8h-8C4.2,8,4,8.2,4,8.5C4,8.8,4.2,9,4.5,9z"/>
+                   <path fill="#000000" d="M4.5,6h8C12.8,6,13,5.8,13,5.5S12.8,5,12.5,5h-8C4.2,5,4,5.2,4,5.5S4.2,6,4.5,6z"/>
+                   <path fill="#000000" d="M4.5,12h8c0.3,0,0.5-0.2,0.5-0.5S12.8,11,12.5,11h-8C4.2,11,4,11.2,4,11.5S4.2,12,4.5,12z"/>
+
+                	
                 </g>
                 </svg>
 
@@ -294,17 +294,13 @@ _gaq.push(['_trackPageview']);
 })();
 
 </script>
-  <nav class="nav">
 
-      <li><a href="{% url 'board:info' %}">소개</a></li>
-      <li><a href="{% url 'board:index' %}">게시판</a></li>
-      <li><a href="{% url 'board:cc_suggestion' %}">건의</a></li>
-  </nav>
   <div class="write">
       <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form',
-      'width=800,height=582'); return false;"><button class="write_button">글쓰기</button></a>
+      'width=800,height=582,top=20,left=300'); return false;"><button class="write_button">글쓰기</button></a>
 
-    <a href="{% url 'board:write_form' %}"><button class="write_button">글쓰기</button></a>
+
+
   </div>
   </div>
   <div class="container">
