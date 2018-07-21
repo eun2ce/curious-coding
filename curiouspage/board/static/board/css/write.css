@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    html,
+ html,
     body {
       padding: 0;
       margin: 0;
@@ -21,7 +12,7 @@
     input[type=text],
     input[type=password] {
       padding: 7px;
-      width: 30vw;
+      width: 40vw;
       font-family: Helvetica, sans-serif;
       font-size: 1.0em;
       margin: 0px 0px 10px 0px;
@@ -35,10 +26,9 @@
       border: 2px solid #ccc;
       margin-bottom: 9px;
     }
-
     textarea {
       height: 30vh;
-      width: 35vw;
+      width: 50vw;
       resize: none;
       overflow: hidden;
       font-size: 1.0em;
@@ -47,14 +37,21 @@
     }
 
     input[type=submit] {
+      margin-left: 35px;
+    }
+
+    input[type=submit],
+    input[type=reset] {
       padding: 5px 15px;
-      margin-left: 7vw;
-      width: 20vw;
-      background: ccc;
+      width: 10vw;
+      background: #052e65;
       border: 0 none;
       cursor: pointer;
       -webkit-border-radius: 5px;
       border-radius: 5px;
+      margin-top: 380px;
+      color: #ffffff;
+
     }
 
     #page-wrap {
@@ -71,7 +68,7 @@
       float: left;
       text-align: right;
       margin-right: 15px;
-      width: 5vw;
+      width: 9vw;
       padding-top: 5px;
       font-size: 0.9em;
     }
@@ -93,20 +90,3 @@
       color: rgba(255, 255, 255, 0.85);
       box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
     }
-  </style>
-</head>
-
-<body><a href="{% url " board:index " %}" class="button">목록가기</a>
-  <div id="page-wrap">
-    <h3> 댓글 작성 </h3>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <table>
-        {{form.as_table}}
-      </table>
-      <input type="submit" />
-    </form>
-  </div>
-</body>
-
-</html>

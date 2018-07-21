@@ -2,206 +2,20 @@
 <html lang="fr">
 
 <head>
+   {% load static %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
   <title>Curious Coding</title>
-
-  <style type="text/css">
-
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-    }
-    * {
-      scroll-behavior: smooth;
-    }
-    .logo {
-      width: 200px;
-      height: auto;
-      margin-top: 10px;
-
-    }
-
-    img {
-      margin-top: 70px;
-    }
-
-    .title,
-    .content,
-    .write,
-    .nav,
-    .logo {
-      display: flex;
-      margin: auto;
-    }
-
-    .title {
-      height: 45px;
-      width: 360px;
-      border: 1px solid blue;
-      background: #ffffff;
-      margin-top: 40px;
-    }
-
-    input {
-      font-size: 16px;
-      height: 40px;
-      width: 300px;
-      padding: 10px;
-      border: 0px;
-      outline: none;
-      float: left;
-    }
-
-    .search {
-      width: 58px;
-      height: 44px;
-      border: 0px;
-      background: blue;
-      float: right;
-      color: #ffffff;
-    }
-
-    .write {
-      width: 10vw;
-      height: 8vh;
-      margin-left: 85vw;
-      margin-top: 50px;
-    }
-
-    li {
-      list-style: none;
-    }
-
-    .write_button {
-      width: 68px;
-      height: 44px;
-      border: 0px;
-      background: blue;
-      float: right;
-      color: #ffffff;
-    }
-
-    .write_button {
-      width: 68px;
-      height: 44px;
-      border: 0px;
-      background: blue;
-      float: right;
-      color: #ffffff;
-    }
-
-    .nav li {
-      list-style: none;
-      float: left;
-      margin: 0 50px;
-    }
-
-    .nav {
-      margin-top: 90px;
-      width: 60vw;
-      height: 40px;
-      justify-content: center;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    a {
-      width: 80px;
-      background: ccc;
-      border: 0 none;
-      cursor: pointer;
-      background-color: white;
-      color: blue;
-      text-decoration:none;
-    }
-    a:hover { text-decoration:none !important }
-
-    /*select box css 추가*/
-
-    #seledtBox {
-      position: relative;
-      border: none;
-    }
-
-    a img {
-  position: fixed;
-  margin-top: 550px;
-  margin-left: 1280px;
-}
-
-
-#floatMenu {
-  position: absolute;
-  padding: 10px 5px;
-  left: 93%;
-  top: 250px;
-/*  background-color: rgba(0, 0, 0, 50%)*/
-}
-.floatMenu-ul{
-  margin :0;
-  padding:0;
-}
-.float-a{
- /* margin-bottom: 5px; */
-  display: inline-block;
-  width: 70px;
-  height: 50px;
-  line-height: 40px;
-
-  /* border-radius: 50%; */
-  background-color: #052e65;
-  vertical-align: middle;
-  text-decoration: none;
-  text-align: center;
-  color :#ffffff;
-}
-.float-a:hover{
-  color:black;
-  background: #ffffff;
-  transition: 0.3s;
-}
-  </style>
-
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-  <!--disqus comment count 하기위해 script 추가 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/index.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
   <script id="dsq-count-scr" src="//curiouscoding-1.disqus.com/count.js" async></script>
-  <!-- 메뉴-->
-  <script>
-      $(document).ready(function() {
-      
-        // 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-        var floatPosition = parseInt($("#floatMenu").css('top'));
-        // 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-      
-        $(window).scroll(function() {
-          // 현재 스크롤 위치를 가져온다.
-          var scrollTop = $(window).scrollTop();
-          var newPosition = scrollTop + floatPosition + "px";
-      
-          /* 애니메이션 없이 바로 따라감
-           $("#floatMenu").css('top', newPosition);
-           */
-      
-          $("#floatMenu").stop().animate({
-            "top" : newPosition
-          }, 500);
-      
-        }).scroll();
-      
-      });
-      </script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
 </head>
 
 <body>
-
   <div  id="floatMenu" >
       <ul class ="floatMenu-ul">
           <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
@@ -211,11 +25,9 @@
               top
             </a></li>
           </ul>
-  </div> 
-
-
+  </div>
   <div class="logo">
-    <img src="{% static 'board/img/index/logo.PNG' %}" alt="">
+    <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
   </div>
 
   <div class="title">
@@ -225,19 +37,21 @@
     </form>
   </div>
 
-
   <div class="write">
-      <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form',
+    <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form',
       'width=800,height=582,top=20,left=300'); return false;"><button class="write_button">글쓰기</button></a>
+
+
+
   </div>
   </div>
   <div class="container">
     <table class="table  table-hover">
       <thead>
         <tr>
-            <th>
-                <form action="" method="get">
-                  <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
+          <th>
+            <form action="" method="get">
+              <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
                     <option hidden>구분</option>
                     <option value="{{ '' }}">전체보기</option>
                     <option value="{{ 'Notice' }}">Notice</option>
@@ -245,8 +59,8 @@
                     <option value="{{ 'Database' }}">Database</option>
                     <option value="{{ 'Etc' }}">Etc</option>
                   </select>
-                </form>
-              </th>
+            </form>
+          </th>
           <th>제목</th>
           <th>작성자</th>
           <th>날짜</th>
@@ -258,16 +72,17 @@
       <tbody>
         {% if Board.subject_type == "Notice" %}
         <td>
-            <strong>Notice</strong>
+          <strong>Notice</strong>
         </td>
         <td>
           <!-- comment는 댓글개수 카운트 -->
           <strong>
-            <a href="{% url 'board:detail' Board.id %}" {{Board.title}}>{{Board.title}}</a></strong>
-          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
+            <a href="{% url 'board:detail' Board.id %}" {{Board.title}}><span>{{Board.title}}</span></a></strong>
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">
+            <font size="2">comment</font>
+          </a>
           {% if Board.file %}
-          <img  src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;">
-        {% endif %}
+          <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
         <td><strong>{{Board.author}}</strong></td>
         <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
@@ -284,10 +99,11 @@
         <!-- comment는 댓글개수 카운트 -->
         <td>
           <a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a>
-            <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">comment</a>
-            {% if Board.file %}
-            <img  src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;">
-          {% endif %}
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">
+            <font size="2">comment</font>
+          </a>
+          {% if Board.file %}
+          <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
         </td>
         <td>{{Board.author}}</td>
@@ -300,4 +116,5 @@
   </div>
   </div>
 </body>
+
 </html>
