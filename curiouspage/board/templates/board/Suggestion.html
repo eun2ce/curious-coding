@@ -3,176 +3,34 @@
 <html lang="en">
 
 <head>{% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Suggestion</title>
-    <style>
-        .api {
-            width: 80%;
-            margin-left: 130px;
-        }
-        /*suggestion - top*/
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Suggestion</title>
 
-        .suggestion-margin {
-            margin-left: 130px;
-            height: 10vh;
-            margin-top: -40px;
-        }
-
-        .suggestion-main {
-            width: 20%;
-            float: left;
-        }
-
-        .suggestion-bg {
-            margin-left: 110px;
-        }
-
-        .suggestion-content {
-            float: left;
-            width: 80%;
-        }
-
-        /*nav*/
-
-        ol, ul {
-            list-style: none;
-          }
-          blockquote, q {
-            quotes: none;
-          }
-          blockquote:before, blockquote:after,
-          q:before, q:after {
-            content: '';
-            content: none;
-          }
-          table {
-            border-collapse: collapse;
-            border-spacing: 0;
-          }
-
-
-          .bk {
-            background-color: white;
-            color: white;
-            height: auto;
-            margin-left:880px;
-            margin-top:50px;
-            width:70px;
-            font-family: 'Helvetica';
-            letter-spacing: 2px;
-
-          }
-
-          nav ul {
-            margin: 0;
-            padding: 0;
-          }
-
-          .bk ul li {
-            width: 100%;
-            height: 40px;
-            text-align: center;
-          }
-
-          .bk nav li a {
-            line-height: 40px;
-            text-decoration: inherit;
-            /* padding-top:10px; */
-            width: 100%;
-            color: green;
-            display: inline-block;
-            text-transform: uppercase;
-            transition: all 0.4s;
-            -webkit-transition: all 0.4s;
-          }
-
-          div nav li a:hover { background-color: #2c3e50; }
-
-          .menuBtn {
-            display: block;
-            height: 50px;
-            text-align: right;
-            padding-right: 35px;
-            cursor: pointer;
-          }
-
-          .menuBtn:hover { opacity: 0.7; }
-
-          .menuBtn img {
-            height: 30px;
-            position: relative;
-            top: 13px;
-          }
-        .wrapper{
-height: 30px;
-          margin-left: 380px;
-        }
-    </style>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <link rel="stylesheet" href="{% static 'board/css/Suggestion.css' %}">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+ <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
 </head>
 
 <body>
-  <div class="wrapper">
-           <div class="bk">
-               <span class="menuBtn">
-                 <svg version="1.1" x="0px" y="0px"
-                     viewBox="1 1 15 15" enable-background="new 1 1 15 15" xml:space="preserve">
-                 <g>
-                    <path fill="#000000" d="M15,1H2C1.4,1,1,1.4,1,2v13c0,0.6,0.4,1,1,1h13c0.6,0,1-0.4,1-1V2C16,1.4,15.6,1,15,1z M15,15H2V2h13V15z"
-                       />
-                    <path fill="#000000" d="M4.5,9h8C12.8,9,13,8.8,13,8.5C13,8.2,12.8,8,12.5,8h-8C4.2,8,4,8.2,4,8.5C4,8.8,4.2,9,4.5,9z"/>
-                    <path fill="#000000" d="M4.5,6h8C12.8,6,13,5.8,13,5.5S12.8,5,12.5,5h-8C4.2,5,4,5.2,4,5.5S4.2,6,4.5,6z"/>
-                    <path fill="#000000" d="M4.5,12h8c0.3,0,0.5-0.2,0.5-0.5S12.8,11,12.5,11h-8C4.2,11,4,11.2,4,11.5S4.2,12,4.5,12z"/>
-                 </g>
-                 </svg>
+  <div  id="floatMenu" >
+      <ul class ="floatMenu-ul">
+          <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
+          <li><a class ="float-a" href="{% url 'board:index' %}">게시판</a></li>
+          <li><a class ="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+         <li> <a class ="float-a" href="#">
+              top
+            </a></li>
+          </ul>
+  </div>
+    <h2>가치없는 생각은 없습니다.</h2>
 
-               </span>
-               <nav id="navigation-list">
-                 <ul>
-                       <li><a href="{% url 'board:info' %}">소개</a></li>
-                       <li><a href="{% url 'board:index' %}">게시판</a></li>
-                       <li><a href="{% url 'board:cc_suggestion' %}">건의</a></li>
-                   </ul>
-               </nav>
-           </div>
-
- <script type="text/javascript"
- src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
- </script></div>
-           <script type="text/javascript">
-               jQuery(document).ready(function($) {
-                   // hide the menu when the page load
-                   $("#navigation-list").hide();
-                   // when .menuBtn is clicked, do this
-                   $(".menuBtn").click(function() {
-                       // open the menu with slide effect
-                       $("#navigation-list").slideToggle(300);
-                   });
-               });
-           </script>
-       </div>
-       <script type="text/javascript">
-
- var _gaq = _gaq || [];
- _gaq.push(['_setAccount', 'UA-36251023-1']);
- _gaq.push(['_setDomainName', 'jqueryscript.net']);
- _gaq.push(['_trackPageview']);
-
- (function() {
-   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
- })();
-
- </script>
-    <h2 class="suggestion-margin">가치없는 생각은 없습니다.</h2>
-    <br>
-    <br>
     <div class="suggestion-bg">
-        <img src="{% static 'board/img/suggestionpage/suggestion-bg.jpg' %}" alt="" width=90% height=100%>
+      <img src="{% static 'board/img/suggestionpage/suggestion-bg.jpg' %}" alt="" width=90% height=100%>
     </div>
+    <br>
     <br>
     <div class="suggestion-margin">
             <div class="suggestion-main">
@@ -181,8 +39,9 @@ height: 30px;
             <div class="suggestion-content">
                 <p>예 ) [남서울대 컴퓨터소프트웨어학과 OOO]  ㅁㅁㅁ 제공</p>
             </div>
-        </div>
-    <div class="suggestion-margin">
+    </div>
+
+    <div class="suggestion2-margin">
         <div class="suggestion-main">
             <h3>건의</h3>
         </div>
@@ -191,10 +50,12 @@ height: 30px;
                 <br> 더 좋은 발전을 위해 건의사항을 남겨주시면 기여자혜택을 드립니다.</p>
         </div>
     </div>
+
     <br><br>
     <div class="api">
-        {% load disqus_tags %} {% disqus_show_comments %}
+      {% load disqus_tags %} {% disqus_show_comments %}
     </div>
+  </div>
 </body>
 
 </html>

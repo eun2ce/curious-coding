@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+  {% load static %}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  margin: auto;
+}
+
+* {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.ccintro {
+  width: 45%;
+  margin-left: 10%;
+  margin-top: 30px;
+}
+
+#project {
+  width: 80%;
+  height: 75vh;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+
+#first .logo {
+  margin-top: 180px;
+  margin-left: 550px;
+}
+
+.list {
+  width: 1000px;
+}
+
+.list li {
+  list-style: none;
+  float: left;
+  width: 100px;
+  margin-left: 230px;
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  color: black;
+}
+
+#project li {
+  float: left;
+  list-style: none;
+}
+#floatmenu li{
+ list-style: none;
+}
+
+.blank1 {
+  width: 350px;
+}
+
+#project:after {
+  background-image: url("../img/infopage/bbbb.jpg");
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-size: 100%;
+  opacity: 0.2 !important;
+  filter: alpha(opacity=50);
+  z-index: -1;
+  content: "";
+  width: 100%;
+  height: 100%;
+
+}
+
+.blank {
+  width: 45px;
+}
+
+.blank2 {
+  width: auto;
+  height: 170px;
+}
+
+.check {
+  margin-left: 270px;
+}
+
+.table {
+  margin-left: -180px;
+}
+
+.blank2 {
+  height: 80px;
+}
+
+#dev {
+
+  width: 80%;
+  margin: auto;
+  height: auto;
+}
+
+.ndfintro {
+  width: 20%;
+  height: 300px;
+  margin-top: 30px;
+}
+
+.ndfdetail {
+  width: 80%;
+  margin-left: 23%;
+  margin-top: -320px;
+  height: 350px;
+  border-bottom: 1px solid black;
+}
+
+.blank1 {
+  height: 50px;
+}
+
+a img {
+  position: fixed;
+  margin-top: 550px;
+  margin-left: 1250px;
+}
+
+span {
+
+  font-size: 18px;
+}
+
+.wrap {
+
+
+  margin-left: -560px;
+  text-align: center;
+}
+
+.wrap a {
+  -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 20px 30px;
+}
+
+a.button {
+  color: rgba(30, 22, 54, 0.6);
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+a.button:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}

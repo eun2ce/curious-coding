@@ -6,307 +6,25 @@
   <meta charset="utf-8">
   <title></title>
   {% load static %}
-  <style>
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      margin: auto;
-    }
-
-    * {
-      scroll-behavior: smooth;
-    }
-
-    .ccintro {
-      width: 50%;
-      margin-left: 100px;
-      margin-top: -60px;
-    }
-
-    #project {
-      width: 80%;
-      height: 75vh;
-      margin: auto;
-      margin-top: 10px;
-      position: relative;
-      z-index: 1;
-    }
+ <link rel="stylesheet" href="{% static 'board/css/info.css' %}">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+  <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
 
 
-    #first .logo {
-      margin-top: 180px;
-      margin-left: 550px;
-    }
-
-    .list {
-      width: 1000px;
-    }
-
-    .list li {
-      list-style: none;
-      float: left;
-      width: 100px;
-      margin-left: 230px;
-      font-size: 1.5em;
-      margin-top: 10px;
-    }
-
-    a {
-      text-decoration: none;
-      color: blue;
-    }
-
-    a:hover {
-      color: black;
-    }
-
-    #project li {
-      float: left;
-      list-style: none;
-    }
-
-    .blank1 {
-      width: 350px;
-    }
-
-    #project:after {
-      background:url('{% static 'board/img/infopage/bbbb.jpg' %}');
-      top: 0;
-      left: 0;
-      position: absolute;
-      background-size: 100%;
-      opacity: 0.2 !important;
-      filter: alpha(opacity=50);
-      z-index: -1;
-      content: "";
-      width: 100%;
-      height: 100%;
-
-    }
-
-    .blank {
-      width: 45px;
-    }
-
-    .blank2 {
-      width: auto;
-      height: 170px;
-    }
-
-    .check {
-      margin-left: 270px;
-    }
-
-    .table {
-      margin-left: -180px;
-    }
-
-    .blank2 {
-      height: 80px;
-    }
-
-    #dev {
-
-      width: 80%;
-      margin: auto;
-      height: auto;
-    }
-
-    .ndfintro {
-      width: 20%;
-      height: 300px;
-      margin-top: 30px;
-    }
-
-    .ndfdetail {
-      width: 80%;
-
-      margin-left: 23%;
-      margin-top: -320px;
-      height: 350px;
-      border-bottom: 1px solid black;
-    }
-
-    .blank1 {
-      height: 50px;
-    }
-
-    a img {
-      position: fixed;
-      margin-top: 550px;
-      margin-left: 1250px;
-    }
-
-    span {
-
-      font-size: 18px;
-    }
-
-    .wrap {
-
-
-      margin-left: -560px;
-      text-align: center;
-    }
-
-    .wrap a {
-      -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-      -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-      -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-      -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-      transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-      display: block;
-      margin: 20px auto;
-      max-width: 200px;
-      text-decoration: none;
-      border-radius: 4px;
-      padding: 20px 30px;
-    }
-
-    a.button {
-      color: rgba(30, 22, 54, 0.6);
-      box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
-    }
-
-    a.button:hover {
-      color: rgba(255, 255, 255, 0.85);
-      box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
-    }
-
-    <!---------------------------------------->
-    ol, ul {
-        list-style: none;
-      }
-      blockquote, q {
-        quotes: none;
-      }
-      blockquote:before, blockquote:after,
-      q:before, q:after {
-        content: '';
-        content: none;
-      }
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-
-
-      .bk {
-        background-color: white;
-        color: white;
-        height: auto;
-        margin-left:880px;
-        margin-top:50px;
-        width:70px;
-        font-family: 'Helvetica';
-        letter-spacing: 2px;
-
-      }
-
-      nav ul {
-        margin: 0;
-        padding: 0;
-      }
-
-      .bk ul li {
-        width: 100%;
-        height: 40px;
-        text-align: center;
-      }
-
-      .bk nav li a {
-        line-height: 40px;
-        text-decoration: inherit;
-        /* padding-top:10px; */
-        width: 100%;
-        color: green;
-        display: inline-block;
-        text-transform: uppercase;
-        transition: all 0.4s;
-        -webkit-transition: all 0.4s;
-      }
-
-      div nav li a:hover { background-color: #2c3e50; }
-
-      .menuBtn {
-        display: block;
-        height: 50px;
-        text-align: right;
-        padding-right: 35px;
-        cursor: pointer;
-      }
-
-      .menuBtn:hover { opacity: 0.7; }
-
-      .menuBtn img {
-        height: 30px;
-        position: relative;
-        top: 13px;
-      }
-    .wrapper{
-    height: 30px;
-
-      margin-left: 400px;
-    }
-  </style>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
 <body>
-  <div class="wrapper">
-           <div class="bk">
-               <span class="menuBtn">
-                 <svg version="1.1" x="0px" y="0px"
-                     viewBox="1 1 15 15" enable-background="new 1 1 15 15" xml:space="preserve">
-                 <g>
-                    <path fill="#000000" d="M15,1H2C1.4,1,1,1.4,1,2v13c0,0.6,0.4,1,1,1h13c0.6,0,1-0.4,1-1V2C16,1.4,15.6,1,15,1z M15,15H2V2h13V15z"
-                       />
-                    <path fill="#000000" d="M4.5,9h8C12.8,9,13,8.8,13,8.5C13,8.2,12.8,8,12.5,8h-8C4.2,8,4,8.2,4,8.5C4,8.8,4.2,9,4.5,9z"/>
-                    <path fill="#000000" d="M4.5,6h8C12.8,6,13,5.8,13,5.5S12.8,5,12.5,5h-8C4.2,5,4,5.2,4,5.5S4.2,6,4.5,6z"/>
-                    <path fill="#000000" d="M4.5,12h8c0.3,0,0.5-0.2,0.5-0.5S12.8,11,12.5,11h-8C4.2,11,4,11.2,4,11.5S4.2,12,4.5,12z"/>
-                 </g>
-                 </svg>
-
-               </span>
-               <nav id="navigation-list">
-                 <ul>
-                       <li><a href="{% url 'board:info' %}">소개</a></li>
-                       <li><a href="{% url 'board:index' %}">게시판</a></li>
-                       <li><a href="{% url 'board:cc_suggestion' %}">건의</a></li>
-                   </ul>
-               </nav>
-           </div>
-
- <script type="text/javascript"
- src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
- </script></div>
-           <script type="text/javascript">
-               jQuery(document).ready(function($) {
-                   // hide the menu when the page load
-                   $("#navigation-list").hide();
-                   // when .menuBtn is clicked, do this
-                   $(".menuBtn").click(function() {
-                       // open the menu with slide effect
-                       $("#navigation-list").slideToggle(300);
-                   });
-               });
-           </script>
-       </div>
-       <script type="text/javascript">
-
- var _gaq = _gaq || [];
- _gaq.push(['_setAccount', 'UA-36251023-1']);
- _gaq.push(['_setDomainName', 'jqueryscript.net']);
- _gaq.push(['_trackPageview']);
-
- (function() {
-   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
- })();
-
- </script>
+  <div  id="floatMenu" >
+      <ul class ="floatMenu-ul">
+          <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
+          <li><a class ="float-a" href="{% url 'board:index' %}">게시판</a></li>
+          <li><a class ="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+         <li> <a class ="float-a" href="#">
+              top
+            </a></li>
+          </ul>
+  </div>
   <div class="ccintro">
     <h2>코딩능력 향상을 위한 당신과 가장 가까운 코딩선생님 "Coding Curious"</h2>
   </div>
@@ -378,7 +96,7 @@
     </div>
     <div class="ndfdetail">
       <h3>NDF</h3>
-      <h5>Need Depend Friend 힘들 때 방패가 되어 줄 내게 필요한 친구</h5>
+      <h5>Need Defend Friend 힘들 때 방패가 되어 줄 내게 필요한 친구</h5>
       <p>혼자하기 힘든 일을 NDF의 curious coding과 함께 한다면 시작하기 더 쉬워질 수 있습니다.</p>
       <div class="blank1"></div>
       <h3>NDF Developers</h3>
