@@ -85,7 +85,7 @@ DATABASES = {
         'NAME':'curious',
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
         'USER':'root',
-        'PASSWORD':'tiger',
+        'PASSWORD':'dyd1569147',
         'HOST':'localhost',
         'PORT':'3306',
     }
