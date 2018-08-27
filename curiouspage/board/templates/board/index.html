@@ -1,62 +1,120 @@
 <!doctype html>
-<html>
+<html lang="fr">
+
 <head>
- <meta charset="utf-8">
- <title>게시판..</title>
- <style type="text/css">
-   body,html{
-     margin: 0;
-     padding:0;}
-  .title,.content,.write{
-    display: flex;
-    justify-content:center;
-    align-items:center;
-    display: flex;
-    margin:auto;
-     }
-   .title{
-     width:30vw;
-     height: 7vh;
-     background-color:red;
-   margin-top: 35px;}
-     .content{
-        margin-top: 10px;
-       width:60vw;
-       height:50vh;
-       background-color:yellow;}
-    .write{
-      width:10vw;
-      height:3vh;
-
-      margin-left:70vw;}
-</style>
-<script type="text/javascript">
-    function goUrl(url) {
-         location.href=url;
-      }
-
-  </script>
+   {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Curious Coding</title>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/index.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+  <script id="dsq-count-scr" src="//curiouscoding-1.disqus.com/count.js" async></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/bootstrap.css' %}" />
 </head>
-<body>
-    <form action="" method="get">
-        <input type="text" name="search_word" value="{{ search_word }}">
-        <input type="submit" value="검색">
-      </form>
-<div class="title">
-<h3>Notice</h3>
-</div>
-<div class="content">
- <ul>
-  {% for Board in board_title %} <tr>
-    <td><a href="{% url 'board:detail' Board.id %}"{{Board.title}}</a><p>{{Board.title}}</p></td></tr>
-{% endfor %}
-</ul>
-</div>
-<div class="write">
-<a href="{% url 'board:write_form' %}">글쓰기</a>
-</div>
-<div class="">
 
-</div>
 <body>
+  <div  id="floatMenu" >
+      <ul class ="floatMenu-ul">
+          <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
+          <li><a class ="float-a" href="{% url 'board:index' %}">게시판</a></li>
+          <li><a class ="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+         <li> <a class ="float-a" href="#">
+              top
+            </a></li>
+          </ul>
+  </div>
+  <div class="logo">
+    <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
+  </div>
+
+  <div class="title">
+    <form action="" method="get">
+      <input class="search_word" type="text" name="search_word" value="{{ search_word }}" placeholder="Search..">
+      <button class="search">검색</button>
+    </form>
+  </div>
+
+  <div class="write">
+    <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form',
+      'width=800,height=582,top=20,left=300'); return false;"><button class="write_button">글쓰기</button></a>
+
+
+
+  </div>
+  </div>
+  <div class="container">
+    <table class="table  table-hover">
+      <thead>
+        <tr>
+          <th>
+            <form action="" method="get">
+              <select id="seledtBox" name="subject_type" onchange="this.form.submit()">
+                    <option hidden>구분</option>
+                    <option value="{{ '' }}">전체보기</option>
+                    <option value="{{ 'Notice' }}">Notice</option>
+                    <option value="{{ 'Language' }}">Language</option>
+                    <option value="{{ 'Database' }}">Database</option>
+                    <option value="{{ 'Etc' }}">Etc</option>
+                  </select>
+            </form>
+          </th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>날짜</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <!-- 공지 -->
+      {% for Board in board_title %}
+      <tbody>
+        {% if Board.subject_type == "Notice" %}
+        <td>
+          <strong>Notice</strong>
+        </td>
+        <td>
+          <!-- comment는 댓글개수 카운트 -->
+          <strong>
+            <a href="{% url 'board:detail' Board.id %}" {{Board.title}}><span>{{Board.title}}</span></a></strong>
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">
+            <font size="2">comment</font>
+          </a>
+          {% if Board.file %}
+          <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
+        </td>
+        <td><strong>{{Board.author}}</strong></td>
+        <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
+      </tbody>
+      {% endif %} {% endfor %}
+
+      <!-- 일반글 -->
+      {% for Board in board_title %}
+      <tbody>
+        {% if Board.subject_type != "Notice" %}
+        <td> {{Board.subject_type}}</td>
+
+        <!-- comment는 댓글개수 카운트 -->
+        <td>
+          <a href="{% url 'board:detail' Board.id %}">{{Board.title}}</a>
+          <a href="{% url 'board:detail' Board.id %}#disqus_thread" style="color:#A4A4A4;">
+            <font size="2">comment</font>
+          </a>
+          {% if Board.file %}
+          <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
+        </td>
+        </td>
+        <td>{{Board.author}}</td>
+        <td>{{Board.created|date:"Y-m-d"}}</td>
+        <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
+      </tbody>
+      {% endif %} {% endfor %}
+    </table>
+  </div>
+  </div>
+  </div>
+</body>
+
 </html>

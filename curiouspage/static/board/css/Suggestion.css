@@ -1,0 +1,36 @@
+.api {
+          width: 80%;
+          margin-left: 130px;
+      }
+      /*suggestion - top*/
+
+      h2{
+        padding-left:8%;
+
+      }
+
+      .suggestion-margin {
+          width:80%;
+          height:100px;
+          padding-left: 120px;
+      }
+
+      .suggestion2-margin{
+        width:80%;
+        height:100px;
+        padding-left: 120px;
+      }
+
+      .suggestion-main {
+          width:10%;
+          float: left;
+      }
+
+      .suggestion-bg {
+          margin-left: 110px;
+        margin-top:50px;
+      }
+      .suggestion-content {
+          float: left;
+          width: 80%;
+      }

@@ -1,0 +1,61 @@
+<!-- Suggestion -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>{% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Suggestion</title>
+
+ <link rel="stylesheet" href="{% static 'board/css/Suggestion.css' %}">
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+ <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
+</head>
+
+<body>
+  <div  id="floatMenu" >
+      <ul class ="floatMenu-ul">
+          <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
+          <li><a class ="float-a" href="{% url 'board:index' %}">게시판</a></li>
+          <li><a class ="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+         <li> <a class ="float-a" href="#">
+              top
+            </a></li>
+          </ul>
+  </div>
+    <h2>가치없는 생각은 없습니다.</h2>
+
+    <div class="suggestion-bg">
+      <img src="{% static 'board/img/suggestionpage/suggestion-bg.jpg' %}" alt="" width=90% height=100%>
+    </div>
+    <br>
+    <br>
+    <div class="suggestion-margin">
+            <div class="suggestion-main">
+                <h3>기여자</h3>
+            </div>
+            <div class="suggestion-content">
+                <p>예 ) [남서울대 컴퓨터소프트웨어학과 OOO]  ㅁㅁㅁ 제공</p>
+            </div>
+    </div>
+
+    <div class="suggestion2-margin">
+        <div class="suggestion-main">
+            <h3>건의</h3>
+        </div>
+        <div class="suggestion-content">
+            <p>NDF는 curious coding을 통해 미래 개발자들의 코딩실력을 향상시키고, 편의를 제공하고자 합니다.
+                <br> 더 좋은 발전을 위해 건의사항을 남겨주시면 기여자혜택을 드립니다.</p>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="api">
+      {% load disqus_tags %} {% disqus_show_comments %}
+    </div>
+  </div>
+</body>
+
+</html>

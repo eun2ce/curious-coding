@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
 
+# disqus setting
+    'disqus',
+    'django.contrib.sites',
+]
+DISQUS_WEBSITE_SHORTNAME = 'curiouscoding-1'
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,8 +84,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'curious',
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
-        'USER':'root',
-        'PASSWORD':'dyd1569147',
+        'USER':'user01',
+        'PASSWORD':'tiger',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -111,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -124,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 """
 static 시스템 내부에서 쓰이는 각종 이미지

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Information</title>
+  <meta charset="utf-8">
+  <title></title>
+  {% load static %}
+ <link rel="stylesheet" href="{% static 'board/css/info.css' %}">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+  <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
+
+
+</head>
+
+<body>
+  <div  id="floatMenu" >
+      <ul class ="floatMenu-ul">
+          <li><a  class ="float-a" href="{% url 'board:info' %}">소개</a></li>
+          <li><a class ="float-a" href="{% url 'board:index' %}">게시판</a></li>
+          <li><a class ="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+         <li> <a class ="float-a" href="#">
+              top
+            </a></li>
+          </ul>
+  </div>
+  <div class="ccintro">
+    <h2>코딩능력 향상을 위한 당신과 가장 가까운 코딩선생님 "Coding Curious"</h2>
+  </div>
+
+  <section id="project">
+    <div class="blank2"></div>
+    <div class="table">
+      <table>
+        <tr>
+          <td>
+            <div class="blank1"></div>
+          </td>
+          <td>
+            <img src="{% static 'board/img/infopage/logo.png' %}" width="200" alt="">
+          </td>
+          <td>
+            <div class="blank"></div>
+          </td>
+          <td>
+            <p>
+              <font size=10>
+                <strong>Curious Coding</strong>
+              </font>
+            </p>
+            <p> 당신은 코딩에 관한 궁금증을 해소 할 권리가 있습니다.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="check">
+      <ul>
+        check your coding status
+      </ul>
+      <ul>
+        <li>
+          <img src="{% static 'board/img/infopage/check.jpg' %}" width="30" alt="d">
+        </li>
+        <li>
+          <font size="3"> 에디터를 처음 켰을 때 뭐부터 해야할지 모르시는 분</font>
+        </li>
+      </ul>
+      <br>
+      <ul>
+        <li>
+          <img src="{% static 'board/img/infopage/check.jpg' %}" width="30" alt="d">
+        </li>
+        <li>
+          <font size="3"> 내 손으로 직접 무언가 이루고자하시는 분</font>
+        </li>
+      </ul>
+      <br>
+      <ul>
+        <li>
+          <img src="{% static 'board/img/infopage/check.jpg' %}" width="30" alt="d">
+        </li>
+        <li>
+          <font size="3"> 미래 컴퓨터 소프트웨어 개발자를 꿈꾸시는 분</font>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="dev">
+    <div class="ndfintro">
+      <h3>NDF</h3>
+      <h3>소개</h3>
+
+    </div>
+    <div class="ndfdetail">
+      <h3>NDF</h3>
+      <h5>Need Defend Friend 힘들 때 방패가 되어 줄 내게 필요한 친구</h5>
+      <p>혼자하기 힘든 일을 NDF의 curious coding과 함께 한다면 시작하기 더 쉬워질 수 있습니다.</p>
+      <div class="blank1"></div>
+      <h3>NDF Developers</h3>
+      <p>여러분과 함께 공부하는 남서울대학교 컴퓨터소프트웨어학과
+        <span>김아름,조용범,조은희</span>를 통해 만들어졌습니다.</p>
+
+    </div>
+  </section>
+  <section id="dev">
+    <div class="ndfintro">
+
+      <h3>문의사항</h3>
+
+    </div>
+    <div class="ndfdetail">
+
+      <p>불편사항 및 제안사항은 이 곳 오픈카톡을 이용하여 문의해주세요. 더 나아질 수 있는 NDF curious coding을 만들어 나가겠습니다.</p>
+      <div class="wrap">
+        <a href="https://open.kakao.com/o/sno5ELR" class="button">Open KakaoTalk 바로가기</a>
+
+      </div>
+  </section>
+
+</body>
+
+
+</html>

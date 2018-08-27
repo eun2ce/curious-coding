@@ -1,0 +1,10 @@
+*.pyc
+curiouspage/board/__pycache__/
+curiouspage/board/migrations/
+emv
+db.sqlite3
+/static
+.DS_Store
+m migrations
+migrations/
+.vscode/

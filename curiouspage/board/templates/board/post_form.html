@@ -1,8 +1,112 @@
-<form action="" method ="POST">
-{% csrf_token %}
-    <table>
-    {{form.as_table}}
-    </table>
+<!DOCTYPE html>
+<html lang="en">
 
-    <input type="submit" />
-</form>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul li {
+      list-style: none;
+      float: left;
+    }
+
+    input[type=text],
+    input[type=password] {
+      padding: 7px;
+      width: 30vw;
+      font-family: Helvetica, sans-serif;
+      font-size: 1.0em;
+      margin: 0px 0px 10px 0px;
+      border: 2px solid #ccc;
+    }
+
+    #id_subject_type {
+      position: relative;
+      width: 200px;
+      height: 40px;
+      border: 2px solid #ccc;
+      margin-bottom: 9px;
+    }
+
+    textarea {
+      height: 30vh;
+      width: 35vw;
+      resize: none;
+      overflow: hidden;
+      font-size: 1.0em;
+      margin: 0px 0px 10px 0px;
+      border: 2px solid #ccc;
+    }
+
+    input[type=submit] {
+      padding: 5px 15px;
+      margin-left: 7vw;
+      width: 20vw;
+      background: ccc;
+      border: 0 none;
+      cursor: pointer;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    #page-wrap {
+      width: 660px;
+      background: white;
+      padding: 20px 50px 20px 50px;
+      margin: 20px auto;
+      min-height: 500px;
+      height: auto !important;
+      height: 500px;
+    }
+
+    label {
+      float: left;
+      text-align: right;
+      margin-right: 15px;
+      width: 5vw;
+      padding-top: 5px;
+      font-size: 0.9em;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      width: 100px;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    a.button {
+      color: rgba(30, 22, 54, 0.6);
+      box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+    }
+
+    a.button:hover {
+      color: rgba(255, 255, 255, 0.85);
+      box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+    }
+  </style>
+</head>
+
+<body><a href="{% url " board:index " %}" class="button">목록가기</a>
+  <div id="page-wrap">
+    <h3> 댓글 작성 </h3>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <table>
+        {{form.as_table}}
+      </table>
+      <input type="submit" />
+    </form>
+  </div>
+</body>
+
+</html>
