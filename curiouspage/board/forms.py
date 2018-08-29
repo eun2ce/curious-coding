@@ -11,7 +11,8 @@ from django.contrib.auth.forms import UserCreationForm
 
         # fields = '__all__'
 class BoardForm(forms.ModelForm):
-    #password = forms.CharField(widget=forms.PasswordInput)
+    # 'password': forms.PasswordInput()
+    # password = forms.CharField(widget=forms.PasswordInput)
     sj_type =  SUBJECT_TYPE_CHOICE = (('Language', 'Language'),
                                     ('Database', 'Database'),
                                     ('Etc', 'Etc'),)
