@@ -3,7 +3,6 @@ from pytz import timezone
 from django.conf import settings
 #db
 # Create your models here.
-#https://blog.hannal.com/2008/6/04_2-python_django_lecture/ 출처
 
 class Category(models.Model):   # 공지 유저글 인기글
     categoryname = models.CharField(max_length=10)
@@ -16,7 +15,7 @@ class Board (models.Model):
                             ('Language', 'Language'),
                             ('Database', 'Database'),
                             ('Etc', 'Etc'),)
-    password = models.CharField(max_length=50,null=False)  #비밀번호
+    password = models.CharField(('password'), max_length=128, null=False)
     author =models.CharField(max_length = 10,null=False) #작성자
     categoryname = models.ForeignKey(Category,default=True,on_delete=models.CASCADE)  #카테고리
     subject_type = models.CharField(
