@@ -32,11 +32,15 @@ class ConfirmPasswordForm(forms.ModelForm):
         fields = ('password',)
  
 class SignUpForm (UserCreationForm):
-    username = forms.CharField(max_length=30,help_text='necessary.')
-    nick_name = forms.CharField(max_length=30,help_text='necessary.')
-    student_number = forms.CharField(widget=TextInput(attrs={'type':'number'}))
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-    
+    username = forms.CharField(widget=TextInput(attrs={'type':'number'})) # 학번
+    nick_name = forms.CharField(max_length=30,help_text='necessary.') # 별명
+
     class Meta:
         model = User
-        fields = ['student_number','username','nick_name','email','password1','password2']
+        fields = ['username','first_name','nick_name','email','password1','password2','date_joined','last_login']
+        # 학번 이름 별명 이메일 비밀번호 비밀번호 확인
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password'] 

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
-from .forms import BoardForm, ConfirmPasswordForm, SignUpForm
+from .forms import BoardForm, ConfirmPasswordForm, SignUpForm, LoginForm
 from pytz import timezone
 
 from django.views.generic import TemplateView
@@ -29,7 +29,22 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'board/adduser.html', {'form': form})
-##
+
+def signin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        # student_number = request.POST['username']
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('board/index.html')
+        else:
+            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+    else:
+        form = LoginForm()
+        return render(request, 'board/login.html', {'form': form})
 
 
 class IndexView(generic.ListView):
