@@ -19,7 +19,9 @@
 </head>
 
 <body>
-
+<!-- test login user -->
+{% if user.is_authenticated %} <p>Welcome, {{ user.username }}. Thanks for logging in.</p> {% else %} <p>Welcome, new user. Please log in.</p> {% endif %}
+<!--  -->
 <div class="warn">
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Warning!</button>
 

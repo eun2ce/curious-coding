@@ -39,7 +39,7 @@ def signin(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('board/index.html')
+            return render(request, 'board/index.html', {'form': form})
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
