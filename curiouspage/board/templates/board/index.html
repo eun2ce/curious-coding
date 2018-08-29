@@ -19,6 +19,9 @@
 </head>
 
 <body>
+<!-- test login activate -->
+{% if user.is_authenticated %} <p>Welcome, {{ user.username }}. Thanks for logging in.</p> {% else %} <p>Welcome, new user. Please log in.</p> {% endif %}
+<!--  -->
 
 <div class="warn">
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Warning!</button>
@@ -59,6 +62,20 @@
             </a></li>
     </ul>
   </div>
+
+  <!-- login btn -->
+<ul class="nav navbar-nav navbar-right">
+  {% if user.is_active %}
+  <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+  <li><a href="{% url 'board:logout' %}">Logout</a></li>
+  {% else %}
+  <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
+  <li><a href="{% url 'admin:index' %}">Admin</a></li>
+  {% endif %}
+</ul>
+
+<!--  -->
+
   <div class="logo">
     <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
   </div>

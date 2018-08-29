@@ -14,7 +14,7 @@ from django.views.generic.edit import CreateView
 # Create your views here.
 
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login,logout,authenticate
 
 def signup(request):
     if request.method == 'POST':
@@ -39,12 +39,15 @@ def signin(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('board/index.html')
+            return render(request, 'board/index.html', {'form': form})
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
         form = LoginForm()
         return render(request, 'board/login.html', {'form': form})
+
+# def logout_view(request):
+#     logout(request)
 
 
 class IndexView(generic.ListView):
@@ -97,6 +100,10 @@ def write_form(request):    #보여질 글쓰기 폼
         form = BoardForm(request.POST,request.FILES)
         if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
             board = form.save(commit = False)
+            #board. = request.user.get_nick_name()
+            board.author = request.user.get_nickname()
+            board.password = request.user.password()
+            board.generate()
             # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
             # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
             form.save()
