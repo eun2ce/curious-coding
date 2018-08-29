@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import  TextInput
 from .models import Board
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 # class CommentForm(forms.ModelForm):
 #     password = forms.CharField(widget=forms.PasswordInput)
 #     class Meta:
@@ -28,8 +30,12 @@ class ConfirmPasswordForm(forms.ModelForm):
     class Meta:
         model = Board
         fields = ('password',)
-
-class UserForm (forms.ModelForm):
+ 
+class SignUpForm (UserCreationForm):
+    student_number = forms.CharField(widget=TextInput(attrs={'type':'number'}))
+    real_name = forms.CharField(max_length=30, required=False,help_text='necessary.')
+    nick_name = forms.CharField(max_length=30, required=False, help_text='necessary.')
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     class Meta:
         model = User
-        fields = ['username','email','password']
+        fields = ['student_number','real_name','nick_name','email','password1','password2']
