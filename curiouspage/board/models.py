@@ -42,6 +42,7 @@ class Board (models.Model):
             self.categoryname = Category.objects.get(id=2)
         super(Board, self).save(*args, **kwargs)
 
+
 # class Comment(models.Model):
 #     password = models.CharField(max_length=50,null=False)  #비밀번호
 #     title = models.ForeignKey(Board,on_delete=models.CASCADE)

@@ -5,9 +5,47 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
-from .forms import BoardForm, ConfirmPasswordForm
+from .forms import BoardForm, ConfirmPasswordForm, SignUpForm, LoginForm
 from pytz import timezone
+
+from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
+# from django.core.urlresolvers import reverse_lazy # generic view에서는 reverse_lazy를 사용한다.
 # Create your views here.
+
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return render(request, 'board/index.html', {'form': form})
+    else:
+        form = SignUpForm()
+    return render(request, 'board/adduser.html', {'form': form})
+
+def signin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        # student_number = request.POST['username']
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('board/index.html')
+        else:
+            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+    else:
+        form = LoginForm()
+        return render(request, 'board/login.html', {'form': form})
+
 
 class IndexView(generic.ListView):
     template_name = 'board/index.html'  #index.html을 뿌려줄 것
