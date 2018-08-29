@@ -1,3 +1,4 @@
 *.pyc
 emv/
 __pycache__/
+settings.py
