@@ -42,19 +42,7 @@ class Board (models.Model):
             self.categoryname = Category.objects.get(id=2)
         super(Board, self).save(*args, **kwargs)
 
-# class User (models.Model):
-#     username = models.PositiveIntegerField(null=False)
-#     email = models.CharField(max_length = 20)
-#     nickname = models.CharField(max_length = 10, null= False)
-#     password = models.CharField(max_length=50,null=False)
-#     joindate = models.DateTimeField(auto_now_add=True)
-#     def __unicode__(self):
-#         return self.title
 
-#     def created_at_korean_time(self):
-#         korean_timezone = timezone(settings.TIME_ZONE)
-#         return self.created.astimezone(korean_timezone)
-        
 # class Comment(models.Model):
 #     password = models.CharField(max_length=50,null=False)  #비밀번호
 #     title = models.ForeignKey(Board,on_delete=models.CASCADE)
