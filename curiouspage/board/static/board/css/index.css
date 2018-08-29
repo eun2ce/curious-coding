@@ -1,4 +1,4 @@
-﻿<style type="text/css">
+﻿ <style type="text/css">
     @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
     body,
     html {
@@ -12,10 +12,15 @@
       font-family: 'Nanum Gothic', sans-serif;
     }
 
+    .warn{
+      margin: 10px;
+      height: 0px;
+    }
     .logo img {
       width: 200px;
       height: auto;
       margin: auto;
+      margin-top: 100px
       display: block;
       position: relative;
       top: 50px;
@@ -105,5 +110,3 @@
     }
 
   </style>
-
-  

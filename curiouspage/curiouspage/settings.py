@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'curious',
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
-        'USER':'user01',
+        'USER':'root',
         'PASSWORD':'tiger',
         'HOST':'localhost',
         'PORT':'3306',
