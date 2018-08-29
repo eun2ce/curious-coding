@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 app_name ='board'
 urlpatterns = [
+    path('join/', views.signup, name='join'), # sign up
+
     path('',views.IndexView.as_view(),name='index'),    #main page
     path('<int:pk>/',views.DetailView.as_view(),name='detail'), #detail page
     path('write_form', views.write_form, name = 'write_form'), #write board

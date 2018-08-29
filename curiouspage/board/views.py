@@ -5,9 +5,30 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board,Category
 from django.urls import reverse,reverse_lazy
 from django.views import generic
-from .forms import BoardForm, ConfirmPasswordForm
+from .forms import BoardForm, ConfirmPasswordForm, UserForm
 from pytz import timezone
+
+from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
+from .forms import UserForm
+# from django.core.urlresolvers import reverse_lazy # generic view에서는 reverse_lazy를 사용한다.
 # Create your views here.
+
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+
+def signup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
+            return redirect('index')
+    else:
+        form = UserForm()
+        return render(request, 'board/adduser.html', {'form': form})
+
+
 
 class IndexView(generic.ListView):
     template_name = 'board/index.html'  #index.html을 뿌려줄 것
