@@ -18,8 +18,8 @@ class BoardForm(forms.ModelForm):
 
     class Meta:
         model = Board
-        fields = ('author',
-                'password',
+        fields = (
+            #'author','password',
                 'subject_type',
                 'title',
                 'content',

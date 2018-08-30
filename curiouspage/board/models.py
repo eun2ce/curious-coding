@@ -17,8 +17,8 @@ class Board (models.Model):
                             ('Database', 'Database'),
                             ('Etc', 'Etc'),)
     user = models.ForeignKey(User,on_delete=models.CASCADE,unique=False)
-    password = models.CharField(('password'), max_length=128, null=False)
-    author =models.CharField(max_length = 10,null=False) #작성자
+    # password = models.CharField(('password'), max_length=128, null=False)
+    # author =models.CharField(max_length = 10,null=False) #작성자
     categoryname = models.ForeignKey(Category,default=True,on_delete=models.CASCADE)  #카테고리
     subject_type = models.CharField(
         'Subject Type', max_length=10, default='Etc', choices=SUBJECT_TYPE_CHOICE) #글주제

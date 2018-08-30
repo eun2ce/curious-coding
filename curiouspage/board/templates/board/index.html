@@ -19,10 +19,6 @@
 </head>
 
 <body>
-<!-- test login activate -->
-{% if user.is_authenticated %} <p>Welcome, {{ user.username }}. Thanks for logging in.</p> {% else %} <p>Welcome, new user. Please log in.</p> {% endif %}
-<!--  -->
-
 <div class="warn">
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Warning!</button>
 
@@ -47,23 +43,7 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-  <div id="floatMenu">
-    <ul class="floatMenu-ul">
-      <li><a class="float-a" href="{% url 'board:info' %}">소개</a></li>
-      <li><a class="float-a" href="{% url 'board:index' %}">게시판</a></li>
-      <li><a class="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
-      <li> <a class="float-a" href="#">
-              top
-            </a></li>
-    </ul>
-  </div>
-
-  <!-- login btn -->
+    <!-- login btn -->
 <ul class="nav navbar-nav navbar-right">
   {% if user.is_active %}
   <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
@@ -75,7 +55,16 @@
 </ul>
 
 <!--  -->
-
+  <div id="floatMenu">
+    <ul class="floatMenu-ul">
+      <li><a class="float-a" href="{% url 'board:info' %}">소개</a></li>
+      <li><a class="float-a" href="{% url 'board:index' %}">게시판</a></li>
+      <li><a class="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+      <li> <a class="float-a" href="#">
+              top
+            </a></li>
+    </ul>
+  </div>
   <div class="logo">
     <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
   </div>
@@ -86,13 +75,12 @@
       <button class="search">검색</button>
     </form>
   </div>
-
+  <!-- 로그인 여부를 물음 -->
+  {% if user.is_authenticated %}
   <div class="write">
     <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form','width=800,height=582,top=20,left=300'); return false;"><button class="write_button">글쓰기</button></a>
-
-
-
   </div>
+  {% endif %}
   </div>
   <div class="container">
     <table class="table  table-hover">
@@ -133,7 +121,8 @@
           {% if Board.file %}
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
-        <td><strong>{{Board.author}}</strong></td>
+        <td><strong>{{Board.user.last_name}}</strong></td>
+        <!-- <td><strong>{{Board.author}}</strong></td> -->
         <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
@@ -155,7 +144,7 @@
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
         </td>
-        <td>{{Board.author}}</td>
+        <td>{{Board.user.last_name}}</td>
         <td>{{Board.created|date:"Y-m-d"}}</td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>

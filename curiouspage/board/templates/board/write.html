@@ -17,9 +17,9 @@
       {% csrf_token %}
       <ul>
         <li><label>주제</label>{{form.subject_type}}</li>
-        <li><label>별칭</label>{{ request.user.first_name }}</li>
-        <li><label>작성자</label>{{ form.author}}</li>
-        <li><label>비밀번호</label>{{form.password}}</li>
+        <li><label>별칭</label>{{ request.user.last_name }}</li>
+<!--         <li><label>작성자</label>{{ form.author}}</li>
+        <li><label>비밀번호</label>{{form.password}}</li> -->
         <li><label>제목</label>{{form.title}}</li>
         <li><label>내용</label>{{form.content}}</li>
         <li><label></label>{{form.file}}</li>
