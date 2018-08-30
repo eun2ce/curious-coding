@@ -33,7 +33,6 @@ def signup(request):
 def signin(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
-        # student_number = request.POST['username']
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username = username, password = password)
@@ -91,18 +90,15 @@ def writedel_confirm_pw(request,pk):
             'form' : form,
     })
         
-def write_form(request):    #보여질 글쓰기 폼
+def write_form(request):
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
-#        user = request.user
-        if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
+        if form.is_valid():
             board = form.save(commit = False)
             board.user = request.user
-            # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
-            # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
             form.save()
             return HttpResponseRedirect(reverse('board:index'))
-    else:       # 버튼 눌렀을 때 이동할 html
+    else:
         form = BoardForm()
     return render (request,'board/write.html',{
             'form' : form,
@@ -117,7 +113,7 @@ def write_form(request):    #보여질 글쓰기 폼
 
 def write_eidt(request,pk):
     board = get_object_or_404(Board,pk=pk)
-    if request.method == 'POST' and request.POST['password'] == board.password:
+    if request.method == 'POST' and request.user == board.user:
         form = BoardForm(request.POST,request.FILES, instance = board)
         if form.is_valid():
             board = form.save(commit = False)

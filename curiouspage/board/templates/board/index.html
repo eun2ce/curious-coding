@@ -86,13 +86,12 @@
       <button class="search">검색</button>
     </form>
   </div>
-
+  <!-- 로그인 여부를 물음 -->
+  {% if user.is_authenticated %}
   <div class="write">
     <a href="{% url 'board:write_form' %}" onclick="window.open(this.href, 'write_form','width=800,height=582,top=20,left=300'); return false;"><button class="write_button">글쓰기</button></a>
-
-
-
   </div>
+  {% endif %}
   </div>
   <div class="container">
     <table class="table  table-hover">
