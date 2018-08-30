@@ -43,23 +43,7 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-  <div id="floatMenu">
-    <ul class="floatMenu-ul">
-      <li><a class="float-a" href="{% url 'board:info' %}">소개</a></li>
-      <li><a class="float-a" href="{% url 'board:index' %}">게시판</a></li>
-      <li><a class="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
-      <li> <a class="float-a" href="#">
-              top
-            </a></li>
-    </ul>
-  </div>
-
-  <!-- login btn -->
+    <!-- login btn -->
 <ul class="nav navbar-nav navbar-right">
   {% if user.is_active %}
   <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
@@ -71,7 +55,16 @@
 </ul>
 
 <!--  -->
-
+  <div id="floatMenu">
+    <ul class="floatMenu-ul">
+      <li><a class="float-a" href="{% url 'board:info' %}">소개</a></li>
+      <li><a class="float-a" href="{% url 'board:index' %}">게시판</a></li>
+      <li><a class="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+      <li> <a class="float-a" href="#">
+              top
+            </a></li>
+    </ul>
+  </div>
   <div class="logo">
     <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
   </div>
@@ -128,7 +121,7 @@
           {% if Board.file %}
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
-        <td><strong>{{user.last_name}}</strong></td>
+        <td><strong>{{Board.user.last_name}}</strong></td>
         <!-- <td><strong>{{Board.author}}</strong></td> -->
         <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
@@ -151,7 +144,7 @@
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
         </td>
-        <td>{{user.last_name}}</td>
+        <td>{{Board.user.last_name}}</td>
         <td>{{Board.created|date:"Y-m-d"}}</td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>

@@ -26,7 +26,6 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return HttpResponseRedirect(reverse('board:index'))
-            #return render(request, 'board/index.html', {'form': form})
     else:
         form = SignUpForm()
     return render(request, 'board/adduser.html', {'form': form})
@@ -39,7 +38,7 @@ def signin(request):
         user = authenticate(username = username, password = password)
         if user is not None:
             login(request, user)
-            return render(request, 'board/index.html', {'form': form})
+            return HttpResponseRedirect(reverse('board:index'))
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:
