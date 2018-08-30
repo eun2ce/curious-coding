@@ -19,10 +19,6 @@
 </head>
 
 <body>
-<!-- test login activate -->
-{% if user.is_authenticated %} <p>Welcome, {{ user.username }}. Thanks for logging in.</p> {% else %} <p>Welcome, new user. Please log in.</p> {% endif %}
-<!--  -->
-
 <div class="warn">
   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Warning!</button>
 
@@ -132,7 +128,8 @@
           {% if Board.file %}
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
-        <td><strong>{{Board.author}}</strong></td>
+        <td><strong>{{user.last_name}}</strong></td>
+        <!-- <td><strong>{{Board.author}}</strong></td> -->
         <td><strong>{{Board.created|date:"Y-m-d"}}</strong></td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
@@ -154,7 +151,7 @@
           <img src="{% static 'board/img/index/camera.png' %}" alt="in" style="margin-top:0;"> {% endif %}
         </td>
         </td>
-        <td>{{Board.author}}</td>
+        <td>{{user.last_name}}</td>
         <td>{{Board.created|date:"Y-m-d"}}</td>
         <td>&nbsp&nbsp&nbsp&nbsp {{Board.count}}</td>
       </tbody>
