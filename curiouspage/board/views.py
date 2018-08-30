@@ -84,7 +84,7 @@ def writedel_confirm_pw(request,pk):
         if form.is_valid():
             board = form.save(commit = False)
             board.delete()
-            sreturn HttpResponseRedirect(reverse('board:index'))
+            return HttpResponseRedirect(reverse('board:index'))
     else:
         form = ConfirmPasswordForm(instance=board)
     return render (request,'board/confirm_password.html',{
