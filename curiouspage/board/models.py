@@ -16,7 +16,7 @@ class Board (models.Model):
                             ('Language', 'Language'),
                             ('Database', 'Database'),
                             ('Etc', 'Etc'),)
-    user = models.OneToOneField(User,unique= False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,unique=False)
     password = models.CharField(('password'), max_length=128, null=False)
     author =models.CharField(max_length = 10,null=False) #작성자
     categoryname = models.ForeignKey(Category,default=True,on_delete=models.CASCADE)  #카테고리
