@@ -79,7 +79,7 @@ class DetailView(generic.DetailView):
     
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
-    if request.method == 'POST' and request.POST['password'] == board.password:
+    if request.method == 'POST' and request.POST['password'] == board.user.password:
         form = ConfirmPasswordForm(request.POST, instance = board)
         if form.is_valid():
             board = form.save(commit = False)
@@ -94,30 +94,32 @@ def writedel_confirm_pw(request,pk):
 def write_form(request):    #보여질 글쓰기 폼
     if request.method == 'POST':
         form = BoardForm(request.POST,request.FILES)
+#        user = request.user
         if form.is_valid(): # 값이 들어오면 저장하고 인덱스로
             board = form.save(commit = False)
-            #board. = request.user.get_nick_name()
-            board.author = request.user.get_full_name()
-            board.password = request.user.password()
-        
-            board.generate()
+            board.user = request.user
+            # board.author = user.get_full_name()
+            # board.password = user.password()
+            # board.generate()
             # board = form.save(commit=False)   #사용자가 하지않는 pk입력을
             # board.title = Board.objects.get(pk=pk)    #개발자가 넣어준다
             form.save()
-            return HttpResponseRedirect('/board')
+            return render (request,'board/index.html',{
+            'form' : form,
+        })
            # return render(request,'board/index.html')
     else:       # 버튼 눌렀을 때 이동할 html
         form = BoardForm()
     return render (request,'board/write.html',{
-        'form' : form,
-    })
+            'form' : form,
+        })
 
-def do_write_board(request):
-    br = Board(title = request.POST['title'],
-               content = request.POST['content'],
-               file = request.POST['file'],)
-    br.save()
-    return HttpResponseRedirect('board/index.html')
+# def do_write_board(request):
+#     br = Board(title = request.POST['title'],
+#                content = request.POST['content'],
+#                file = request.POST['file'],)
+#     br.save()
+#     return HttpResponseRedirect('board/index.html')
 
 def write_eidt(request,pk):
     board = get_object_or_404(Board,pk=pk)

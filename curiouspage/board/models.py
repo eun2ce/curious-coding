@@ -1,6 +1,7 @@
 from django.db import models
 from pytz import timezone
 from django.conf import settings
+from django.contrib.auth.models import User
 #db
 # Create your models here.
 
@@ -15,6 +16,7 @@ class Board (models.Model):
                             ('Language', 'Language'),
                             ('Database', 'Database'),
                             ('Etc', 'Etc'),)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,unique=False)
     password = models.CharField(('password'), max_length=128, null=False)
     author =models.CharField(max_length = 10,null=False) #작성자
     categoryname = models.ForeignKey(Category,default=True,on_delete=models.CASCADE)  #카테고리

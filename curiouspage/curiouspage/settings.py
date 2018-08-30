@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'disqus',
     'django.contrib.sites',
 ]
+
 DISQUS_WEBSITE_SHORTNAME = 'curiouscoding-1'
 SITE_ID = 1
 MIDDLEWARE = [
