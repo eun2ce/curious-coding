@@ -44,13 +44,14 @@ class Board (models.Model):
         super(Board, self).save(*args, **kwargs)
 
 
-# class Comment(models.Model):
-#     password = models.CharField(max_length=50,null=False)  #비밀번호
-#     title = models.ForeignKey(Board,on_delete=models.CASCADE)
-#     author =models.CharField(max_length = 10)   #작성자
-#     message = models.TextField()    #코멘트
-#     created = models.DateTimeField(auto_now_add=True)   #작성날짜
-#     updated = models.DateTimeField(auto_now=True)   #업데이트날짜
+class Comment(models.Model):
+    #password = models.CharField(max_length=50,null=False)  #비밀번호
+    title = models.ForeignKey(Board,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,unique=False)
+    #author =models.CharField(max_length = 10)   #작성자
+    message = models.TextField()    #코멘트
+    created = models.DateTimeField(auto_now_add=True)   #작성날짜
+    updated = models.DateTimeField(auto_now=True)   #업데이트날짜
     
-#     def __unicode__(self):
-#         return self.title
+    def __unicode__(self):
+        return self.title

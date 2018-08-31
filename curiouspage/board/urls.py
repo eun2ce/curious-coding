@@ -21,9 +21,9 @@ urlpatterns = [
     path('info',views.InfoView, name = 'info'),  # info page
 
     # path('<int:pk>/confirm_password', views.DeleteView.as_view(), name = 'board_delete'),   #board delete
-    # path('board/<int:pk>/comment/new',views.commnet_new, name ='comment_new'), #new comment
-    # path('<int:board_pk>/comment/<int:pk>/edit',views.comment_edit, name ='comment_edit'), # edit comment
-    # path('<int:board_pk>/comment/<int:pk>/comment_delete',views.commentdel_confirm_pw, name ='comment_delete'), # edit comment
+    path('board/<int:pk>/comment/new',views.commnet_new, name ='comment_new'), #new comment
+    path('<int:board_pk>/comment/<int:pk>/edit',views.comment_edit, name ='comment_edit'), # edit comment
+    path('<int:board_pk>/comment/<int:pk>/comment_delete',views.commentdel_confirm_pw, name ='comment_delete'), # edit comment
 
 ]
 
