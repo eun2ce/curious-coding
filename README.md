@@ -1,7 +1,6 @@
-# curious coding
+# [curious coding](https://eheeku.github.io/blog/D-curious-coding/)
 
  당신은 궁금증을 해소 할 권리가 있습니다.
-### [intro page](https://eheeku.github.io/blog/D-curious-coding/)
 
 ### 사이트
  comming soon 
