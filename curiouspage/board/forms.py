@@ -1,15 +1,17 @@
 from django import forms
 from django.forms import  TextInput
-from .models import Board
+from .models import Board,Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-# class CommentForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     class Meta:
-#         model = Comment
-#         fields = ('author','password','message',)
 
-        # fields = '__all__'
+class CommentForm(forms.ModelForm):
+    #password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = Comment
+        fields = ('message',)
+
+#        fields = '__all__'
+
 class BoardForm(forms.ModelForm):
     sj_type =  SUBJECT_TYPE_CHOICE = (('Language', 'Language'),
                                     ('Database', 'Database'),

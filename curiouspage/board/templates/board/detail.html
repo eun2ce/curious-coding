@@ -41,8 +41,22 @@
       <br>
     </div><br>
 
-
 </div>
+    <!-- comment -->
+    <!--  <h3>Comments</h3>
+<a href="{% url 'board:comment_new' board_detail.pk %}">댓글쓰기</a>
+<ul>
+{% for comment in board_detail.comment_set.all %}
+<li>
+    [ {{comment.author}} ] {{comment.message}} date: {{comment.created}}
+    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
+    <form action="" method="POST">
+            <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
+         </form>
+</li>
+{% endfor %} -->
+<!--  -->
+
 <div class="api">
   {% load disqus_tags %} {% disqus_show_comments %}
 </div>
