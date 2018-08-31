@@ -1,6 +1,7 @@
 # curious coding
 
  당신은 궁금증을 해소 할 권리가 있습니다.
+### [intro page](https://eheeku.github.io/blog/D-curious-coding/)
 
 ### 사이트
  comming soon 
@@ -19,7 +20,7 @@
 > version 1.0.0 게시판 기능 및 건의기능 소개 페이지
 
 
-develop by NDF [김아름](https://github.com/ahreum0412) [조용범](https://github.com/joyowlsf) [조은희](https://github.com/joeunhee0806)
+develop by NDF [김아름](https://github.com/ahreum0412) [조용범](https://github.com/joyowlsf) [조은희](https://github.com/eheeku)
 
 
 
