@@ -143,4 +143,7 @@ meida는 사용자가 업로드 한 파일
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
+# account 
+
 LOGOUT_REDIRECT_URL ='/'
+ACCOUNT_SIGNUP_FORM_CLASS = "board.forms.SignupForm"
