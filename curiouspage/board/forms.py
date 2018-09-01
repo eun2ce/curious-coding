@@ -41,7 +41,8 @@ class SignUpForm (UserCreationForm):
         model = User
         fields = ['username','first_name','last_name','email','password1','password2','date_joined','last_login']
         # 학번 이름 별명 이메일 비밀번호 비밀번호 확인
-    @csrf_exempt
+        help_texts = {'username': None,'email' : None,'password':None,}
+    
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
@@ -52,4 +53,5 @@ class SignUpForm (UserCreationForm):
 class LoginForm(forms.ModelForm):
     class Meta:
         model = User
+        help_texts = {'username': None,}
         fields = ['username', 'password'] 

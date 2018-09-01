@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.template import loader, Context
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Board,Category,Comment
@@ -30,6 +31,7 @@ def signup(request):
             return HttpResponseRedirect(reverse('board:index'))
     else:
         form = SignUpForm()
+
     return render(request, 'board/adduser.html', {'form': form})
 
 def signin(request):
@@ -42,10 +44,14 @@ def signin(request):
             login(request, user)
             return HttpResponseRedirect(reverse('board:index'))
         else:
-            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+            if User.objects.filter(username=username).exists():
+                return HttpResponseRedirect(reverse('board:login')+'?unlogin=True')
+            else:
+                return HttpResponseRedirect(reverse('board:login')+'?noname=True')
+
     else:
         form = LoginForm()
-        return render(request, 'board/login.html', {'form': form})
+    return render(request, 'board/login.html', {'form': form})
 
 class IndexView(generic.ListView):
     template_name = 'board/index.html'  #index.html을 뿌려줄 것
