@@ -12,7 +12,8 @@
       <div class="subcontents" style="border-bottom:1px dotted" >    <!--제목/날짜/카테고리-->
   <ul><font size ="5">{{ board_detail.title }} </font> | {{board_detail.subject_type}}
     <!-- 글수정 글삭제 button 태그 삭제하고 button board_btn class추가 -->
-    {% if board_detail.subject_type != "Notice" %}
+    <!-- 같은 유저이면 글 수정 삭제가 보임  -->
+    {% if board_detail.subject_type != "Notice" and user == board_detail.user %}
     <div class="dd">
 
        <a href="{% url "board:write_del" board_detail.pk %}"  class="button board_btn">글삭제</a>
@@ -40,8 +41,22 @@
       <br>
     </div><br>
 
-
 </div>
+    <!-- comment -->
+    <!--  <h3>Comments</h3>
+<a href="{% url 'board:comment_new' board_detail.pk %}">댓글쓰기</a>
+<ul>
+{% for comment in board_detail.comment_set.all %}
+<li>
+    [ {{comment.author}} ] {{comment.message}} date: {{comment.created}}
+    <a href="{% url "board:comment_edit" board_detail.pk comment.pk %}">수정</a>
+    <form action="" method="POST">
+            <a href="{% url "board:comment_delete" board_detail.pk comment.pk %}">삭제</a>
+         </form>
+</li>
+{% endfor %} -->
+<!--  -->
+
 <div class="api">
   {% load disqus_tags %} {% disqus_show_comments %}
 </div>

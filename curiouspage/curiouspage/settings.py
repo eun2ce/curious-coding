@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'board.apps.BoardConfig',
     'django.contrib.admin',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'disqus',
     'django.contrib.sites',
 ]
+
 DISQUS_WEBSITE_SHORTNAME = 'curiouscoding-1'
 SITE_ID = 1
 MIDDLEWARE = [
@@ -60,7 +62,7 @@ ROOT_URLCONF = 'curiouspage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +142,8 @@ meida는 사용자가 업로드 한 파일
 """
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+
+# account 
+
+LOGOUT_REDIRECT_URL ='/'
+ACCOUNT_SIGNUP_FORM_CLASS = "board.forms.SignupForm"
