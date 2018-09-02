@@ -1,38 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>게시글</title>
-       {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'board/css/detail.css' %}" />
-  </head>
-  <body>
 
-      <div class="img_page">{% if board_detail %}
-      <div class="subcontents" style="border-bottom:1px dotted" >    <!--제목/날짜/카테고리-->
-  <ul><font size ="5">{{ board_detail.title }} </font> | {{board_detail.subject_type}}
-    <!-- 글수정 글삭제 button 태그 삭제하고 button board_btn class추가 -->
-    <!-- 같은 유저이면 글 수정 삭제가 보임  -->
-    {% if board_detail.subject_type != "Notice" and user == board_detail.user %}
-    <div class="dd">
+<head>
+  <meta charset="utf-8">
+  <title>게시글</title>
+  {% load static %}
 
-       <a href="{% url "board:write_del" board_detail.pk %}"  class="button board_btn">글삭제</a>
-       <a href="{% url "board:write_eidt" board_detail.pk %}" class="button board_btn"
-       onclick="window.open(this.href,'팝업창','width=800,height=582'); return false;">글수정</a>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/nav.css' %}" />
+  <script type="text/javascript" src="{% static 'board/js/nav.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'board/css/detail.css' %}" />
+</head>
+
+<body>
+  <div id="floatMenu">
+    <ul class="floatMenu-ul">
+      <li><a class="float-a" href="{% url 'board:info' %}">소개</a></li>
+      <li><a class="float-a" href="{% url 'board:index' %}">게시판</a></li>
+      <li><a class="float-a" href="{% url 'board:cc_suggestion' %}">건의</a></li>
+      <li> <a class="float-a" href="#">
+                top
+              </a></li>
+    </ul>
+  </div>
+  <div class="img_page">{% if board_detail %}
+    <div class="subcontents" style="border-bottom:1px dotted">
+      <!--제목/날짜/카테고리-->
+      <ul>
+        <font size="5">{{ board_detail.title }} </font> | {{board_detail.subject_type}}
+        <!-- 글수정 글삭제 button 태그 삭제하고 button board_btn class추가 -->
+        <!-- 같은 유저이면 글 수정 삭제가 보임  -->
+        {% if board_detail.subject_type != "Notice" and user == board_detail.user %}
+        <div class="dd">
+
+          <a href="{% url " board:write_del " board_detail.pk %}" class="button board_btn">글삭제</a>
+          <a href="{% url " board:write_eidt " board_detail.pk %}" class="button board_btn" onclick="window.open(this.href,'팝업창','width=800,height=582'); return false;">글수정</a>
+        </div>
+        {% endif %}
+      </ul>
     </div>
-    {% endif %}
-</ul>
-      </div>
-      <div class="author">
-       작성자: <strong>{{board_detail.author}}</strong><div class="date">{{board_detail.created}}</div>
-      </div>
-      <div class="img_page_1">
-        {%if board_detail.file %}
-      </div>
-        <div class="img_page_2">
-          <img src="{{ board_detail.file.url }}">
-          {% endif %}
-        </div><br>
+    <div class="author">
+      작성자: <strong>{{board_detail.author}}</strong>
+      <div class="date">{{board_detail.created}}</div>
+    </div>
+    <div class="img_page_1">
+      {%if board_detail.file %}
+    </div>
+    <div class="img_page_2">
+      <img src="{{ board_detail.file.url }}"> {% endif %}
+    </div><br>
 
     <div class="img_page_text_1">
       <div class="img_page_text_2">
@@ -41,9 +57,9 @@
       <br>
     </div><br>
 
-</div>
-    <!-- comment -->
-    <!--  <h3>Comments</h3>
+  </div>
+  <!-- comment -->
+  <!--  <h3>Comments</h3>
 <a href="{% url 'board:comment_new' board_detail.pk %}">댓글쓰기</a>
 <ul>
 {% for comment in board_detail.comment_set.all %}
@@ -55,13 +71,14 @@
          </form>
 </li>
 {% endfor %} -->
-<!--  -->
+  <!--  -->
 
-<div class="api">
-  {% load disqus_tags %} {% disqus_show_comments %}
-</div>
-</ul>{% else %}
-<h1>no board_detail</h1>{% endif %}
+  <div class="api">
+    {% load disqus_tags %} {% disqus_show_comments %}
+  </div>
+  </ul>{% else %}
+  <h1>no board_detail</h1>{% endif %}
 
-  </body>
+</body>
+
 </html>
