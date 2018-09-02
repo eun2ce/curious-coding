@@ -3,7 +3,9 @@
       padding: 0;
       margin: 0;
     }
-
+    .nickname{
+      margin-top: -5%;
+    }
     ul li {
       list-style: none;
       float: left;
