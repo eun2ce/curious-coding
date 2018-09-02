@@ -86,17 +86,24 @@ class DetailView(generic.DetailView):
     
 def writedel_confirm_pw(request,pk):
     board = get_object_or_404(Board,pk=pk)
-    if request.method == 'POST' and request.user == board.user:
-        form = ConfirmPasswordForm(request.POST, instance = board)
-        if form.is_valid():
-            board = form.save(commit = False)
-            board.delete()
-            return HttpResponseRedirect(reverse('board:index'))
+    if request.method == 'GET' and request.user == board.user:
+        board.delete()
+        return HttpResponseRedirect(reverse('board:index'))
     else:
-        form = ConfirmPasswordForm(instance=board)
-    return render (request,'board/confirm_password.html',{
-            'form' : form,
-    })
+        return HttpResponseRedirect(reverse('board:detail',args=(pk,))+'?nodelete=True')
+    return HttpResponseRedirect(reverse('board:detail',args=(pk,)))
+    # board = get_object_or_404(Board,pk=pk)
+    # if request.method == 'POST' and request.user == board.user:
+    #     form = ConfirmPasswordForm(request.POST, instance = board)
+    #     if form.is_valid():
+    #         board = form.zsave(commit = False)
+    #         board.delete()
+    #         return HttpResponseRedirect(reverse('board:index'))
+    # else:
+    #     form = ConfirmPasswordForm(instance=board)
+    # return render (request,'board/confirm_password.html',{
+    #         'form' : form,
+    # })
         
 def write_form(request):
     if request.method == 'POST':
