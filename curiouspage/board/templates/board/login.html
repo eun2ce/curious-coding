@@ -50,6 +50,12 @@
     width: 5vw;
     height: 10vh;
   }
+  #id_password #id_username{
+    margin-left:10px;
+  }
+  #id_username{
+    margin-left:15%;
+  }
   </style>
 
     {% load static %}
@@ -65,8 +71,9 @@
   {% csrf_token %}
   <input type="hidden" name="next" value="" />
   <ul>
-    <li><label>학번</label>{{ form.username}}</li>
-    <li><label>PW</label>{{ form.password}}</li>
+    <li><label>학번</label><input type="number" name="username" autofocus required id="id_username" /></li>
+
+    <li><label for="id_password1">비밀번호</label> <input type="password" name="password" required id="id_password" /></li>
   </ul>
 
 

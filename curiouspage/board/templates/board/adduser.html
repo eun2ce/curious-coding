@@ -1,6 +1,14 @@
+
 <h2>회원가입</h2>
 <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
+    <input type='hidden' name='csrfmiddlewaretoken' value='VMHNZOpqS311F1FKQMmuAojx3WPrLSpxuYnZMnDVZMiRY5lTBaKjRjtmUhhW1hfs' />
+    <p><label for="id_username">Username:</label> <input type="number" name="username" autofocus required id="id_username" /></p>
+<p><label for="id_first_name">First name:</label> <input type="text" name="first_name" maxlength="30" id="id_first_name" /></p>
+<p><label for="id_last_name">Last name:</label> <input type="text" name="last_name" maxlength="150" id="id_last_name" /></p>
+<p><label for="id_email">Email address:</label> <input type="email" name="email" maxlength="254" id="id_email" /></p>
+<p><label for="id_password1">Password:</label> <input type="password" name="password1" required id="id_password1" /> <span class="helptext"><ul><li>Your password can&#39;t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can&#39;t be a commonly used password.</li><li>Your password can&#39;t be entirely numeric.</li></ul></span></p>
+<p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" required id="id_password2" /> <span class="helptext">Enter the same password as before, for verification.</span></p>
+<p><label for="id_date_joined">Date joined:</label> <input type="text" name="date_joined" value="2018-09-03 16:08:25" required id="id_date_joined" /><input type="hidden" name="initial-date_joined" value="2018-09-03 16:08:25" id="initial-id_date_joined" /></p>
+<p><label for="id_last_login">Last login:</label> <input type="text" name="last_login" id="id_last_login" /></p>sdsd
     <input type="submit" value="회원가입" />
 </form>
