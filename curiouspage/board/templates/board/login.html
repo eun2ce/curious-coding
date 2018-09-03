@@ -2,19 +2,45 @@
     .errorlist{
       /*display: none;*/
     }
+    .logo img {
+      width: 200px;
+      height: auto;
+      margin: auto;
+      margin-top: 3%;
+      display: block;
+      position: relative;
+      top: 50px;
+    }
+
+
+    .logo , .d{
+      display: flex;
+      margin: auto;
+    }
   </style>
+
+    {% load static %}
+  <div class="logo">
+ <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
+  </div>
+  <div class="d">
+    sdfsdsdf
+  </div>
     <!-- 로그인 폼 -->
   <form method="post" action="{% url 'board:login' %}">
   {% csrf_token %}
   <input type="hidden" name="next" value="" />
-  {{ form.as_p }}
+  <ul>
+    <li><label>학번</label>{{ form.username}}</li>
+    <li><label>비밀번호</label>{{ form.password}}</li>
+  </ul>
   <button type="submit">로그인</button>
     {% if messages %}
   <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class ="message.tags" {% endif %}>{{ message }}</li>
   {% endfor %}</ul>{% endif %}
-  
+
   </form>
 
 {% if request.GET.noname %}
