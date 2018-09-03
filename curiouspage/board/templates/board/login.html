@@ -30,7 +30,10 @@
   <form method="post" action="{% url 'board:login' %}">
   {% csrf_token %}
   <input type="hidden" name="next" value="" />
-  {{ form.as_p }}
+  <ul>
+    <li><label>학번</label>{{ form.username}}</li>
+    <li><label>비밀번호</label>{{ form.password}}</li>
+  </ul>
   <button type="submit">로그인</button>
     {% if messages %}
   <ul class="messages">
