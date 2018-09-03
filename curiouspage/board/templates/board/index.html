@@ -46,13 +46,23 @@
     <!-- login btn -->
 <ul class="nav navbar-nav navbar-right">
   {% if user.is_active %}
-  <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+  <li><a id="toggleButton" > <span class="glyphicon glyphicon-heart"></span> {{user.name}}</a></li>
   <li><a href="{% url 'board:logout' %}">Logout</a></li>
   {% else %}
   <li><a href="{%url 'board:login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
   <li><a href="{% url 'admin:index' %}">Admin</a></li>
   {% endif %}
 </ul>
+
+<!-- 계정 정보 -->
+<div id="moreMenu">
+  <ul><li>ID {{user.username}}</li>
+    <li>{{user.first_name}}</li>>
+      <li>{{user.last_name}}</li>
+    <li>{{user.email}}</li>
+  </ul>
+</div>
+<!--  -->
 
 <!--  -->
   <div id="floatMenu">
@@ -154,7 +164,19 @@
   </div>
   </div>
 </body>
-
+<!--  -->
+<script>
+$(document).ready(function(){ 
+    $('#toggleButton').click(function(){ 
+        var state = $('#moreMenu').css('display');
+        if(state == 'none'){ 
+            $('#moreMenu').show();
+        }else{ 
+            $('#moreMenu').hide();
+        }
+    });
+});
+</script>
 
 </html>
 
