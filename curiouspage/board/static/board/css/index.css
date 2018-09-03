@@ -103,10 +103,25 @@
       margin-top: 550px;
       margin-left: 94.5%;
     }
-
-
     .container {
       width: 80%;
     }
-
+    #moreMenu {
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-color: rgba(0,0,0,.2);
+    color: #000;
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 10%;
+    -webkit-animation: gb__a .2s;
+    animation: gb__a .2s;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    }
   </style>
