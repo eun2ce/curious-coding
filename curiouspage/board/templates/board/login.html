@@ -13,18 +13,52 @@
     }
 
 
-    .logo , .d{
+    .logo ,form{
       display: flex;
       margin: auto;
     }
+  li{
+    list-style: none;
+  }
+  .welcome{
+    width: auto;
+    height: 30px;
+    margin-left: 35%;
+  }
+  span{
+    margin-left:12.5%;
+    font-size: 20px;
+  }
+
+  form{
+    margin-left: 35%;
+    margin-top: 4%;
+  }
+  .join_button{
+    width: 20vw;
+    height: 7vh;
+    background: #052e65;
+    color:white;
+    margin-top:3%;
+    margin-left: 39%;
+    font-size:18px;
+  }
+  .login{
+    background: #052e65;
+    color:white;
+    margin-left:5%;
+    width: 5vw;
+    height: 10vh;
+  }
   </style>
 
     {% load static %}
   <div class="logo">
  <img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
   </div>
-  <div class="d">
-    sdfsdsdf
+  <div class="welcome">
+      <span>Welcome/환영합니다</span> <br><br>
+    cc는 관리자의 승인을 받은 사용자만 로그인 가능합니다.
   </div>
     <!-- 로그인 폼 -->
   <form method="post" action="{% url 'board:login' %}">
@@ -32,9 +66,12 @@
   <input type="hidden" name="next" value="" />
   <ul>
     <li><label>학번</label>{{ form.username}}</li>
-    <li><label>비밀번호</label>{{ form.password}}</li>
+    <li><label>PW</label>{{ form.password}}</li>
   </ul>
-  <button type="submit">로그인</button>
+
+
+
+  <button class="login" type="submit">로그인/<br>Login</button>
     {% if messages %}
   <ul class="messages">
     {% for message in messages %}
@@ -50,4 +87,4 @@
 {% if request.GET.unlogin %}
 <p><p>관리자 승인이 필요한 계정입니다 <br>빠른 승인을 필요로 하신다면 오픈 카카오톡으로 문의 부탁드립니다</p></p>
 {% endif %}
-  <a href="{%url 'board:join' %}"> 회원가입</a>
+  <a href="{%url 'board:join' %}"><button class="join_button">회원가입/Join</button></a>
