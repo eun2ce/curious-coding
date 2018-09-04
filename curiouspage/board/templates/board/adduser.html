@@ -1,5 +1,37 @@
-<h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>join</title>
+</head>
+<body>
+<h1>회원가입</h1>
+    <form method="POST" class="post-form"><input type="hidden" name="csrfmiddlewaretoken" value="FbWPMhfKY9FfRbCnEajqmfZi0g5Uq0q3RcHcO3IWO2VogOpsW6gD3oU9LZhkXyT4">
+        <p><label for="id_username">학번:</label>
+        	<input type="number" name="username" value="" autofocus required id="id_username">
+        </p>
+		<p>
+			<label for="id_first_name">이름:</label>
+			<input type="text" name="first_name" value="" maxlength="30" id="id_first_name">
+		</p>
+		<p>
+			<label for="id_last_name">별명:</label>
+			<input type="text" name="last_name" value="" maxlength="150" id="id_last_name">
+		</p>
+		<p>
+			<label for="id_email">Email:</label>
+			<input type="email" name="email" value="" maxlength="254" id="id_email">
+		</p>
+		<p>
+			<label for="id_password1">Password:</label>
+			<input type="password" name="password1" required id="id_password1">
+		</p>
+		<p>
+			<label for="id_password2">Password confirmation:</label>
+			<input type="password" name="password2" required id="id_password2">
+		</p>
+		        <button type="submit" class="save btn btn-default">Save</button>
     </form>
+</body>
+</html>

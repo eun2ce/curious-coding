@@ -3,11 +3,13 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 app_name ='board'
 urlpatterns = [
-    path('join/', views.signup, name='join'), # sign up
+    path('join/', csrf_exempt(views.signup), name='join'), # sign up
     path('login/',views.signin, name = 'login'), # sign in
     #path('logout/',views.logout_view, {'next_page': settings.LOGOUT_REDIRECT_URL},name='logout'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

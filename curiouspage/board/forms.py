@@ -39,7 +39,7 @@ class SignUpForm (UserCreationForm):
     username = forms.CharField(widget=TextInput(attrs={'type':'number'})) # 학번
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email','password1','password2','date_joined','last_login']
+        fields = ['username','first_name','last_name','email','password1','password2']
         # 학번 이름 별명 이메일 비밀번호 비밀번호 확인
         help_texts = {'username': None,'email' : None,'password':None,}
     
