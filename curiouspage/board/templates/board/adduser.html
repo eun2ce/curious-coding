@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h2>회원가입</h2>
-     <form action="" method="post">
-       {%csrf_token %}
 
-       {{ form.as_p}}
-       <input type="submit" name="" value="회원가입/Join Us">
-     </form>
+<head>
+  <meta charset="utf-8">
+  <title>Join Us!</title>
+  <style media="screen">
+    table {
+      border-collapse: collapse;
+      width: 80%;
 
-  </body>
+    }
+
+    td {
+      border: 1px solid grey;
+      text-align: left;
+      padding: 8px;
+      width: 35%;
+      height: 50px;
+    }
+
+    .info {
+      width: 7%;
+      font-weight: bold;
+      background: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  {% csrf_token %}
+
+  <form method="post" action="">
+    <input type='hidden' name='csrfmiddlewaretoken' value='VMHNZOpqS311F1FKQMmuAojx3WPrLSpxuYnZMnDVZMiRY5lTBaKjRjtmUhhW1hfs' />
+    <table>
+
+      <tr>
+        <td class="info"><label for="id_username">학번:</label></td>
+        <td>{{form.username}}</td>
+      </tr>
+      <tr>
+        <td class="info"> <label for="id_first_name">이름:</label></td>
+        <td> {{form.first_name}}</td>
+      </tr>
+      <tr>
+        <td class="info"><label for="id_last_name">닉네임:</label></td>
+        <td>{{form.last_name}}</td>
+      </tr>
+      <tr>
+        <td class="info"><label for="id_email">Email:</label></td>
+        <td>{{form.email}}</td>
+      </tr>
+      <tr>
+        <td class="info"><label for="id_password1">비밀번호:</label></td>
+        <td>{{form.password1}}</td>
+      </tr>
+      <tr>
+        <td class="info"><label for="id_password2">비밀번호 확인:</label></td>
+        <td> {{form.password2}}</td>
+      </tr>
+
+    </table>
+    <input type="submit" value="회원가입" />
+  </form>
+
+</body>
+
 </html>
