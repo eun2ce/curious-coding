@@ -89,7 +89,7 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'tiger',
         'HOST':'localhost',
-        'PORT':'3306',
+        'PORT':3306,
     }
 }
 
@@ -143,7 +143,7 @@ meida는 사용자가 업로드 한 파일
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
-# account 
+# account
 
 LOGOUT_REDIRECT_URL ='/'
 ACCOUNT_SIGNUP_FORM_CLASS = "board.forms.SignupForm"
