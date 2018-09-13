@@ -88,7 +88,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
         'USER':'root',
         'PASSWORD':'tiger',
-        'HOST':'eheeku.mysql.pythonanywhere-services.com',
+        'HOST':'localhost',
         'PORT':3306,
     }
 }
