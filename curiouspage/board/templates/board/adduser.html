@@ -1,5 +1,156 @@
-<h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>join</title>
+	<style media="screen">
+		html,
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 700px;
+		}
+
+		td {
+			border: 1px solid grey;
+			text-align: left;
+			padding: 8px;
+			width: 500px;
+			height: 45px;
+		}
+
+		form {
+			margin-top: 2%;
+		}
+
+		.info {
+			width: 130px;
+			font-weight: bold;
+			background: #dddddd;
+			text-align: center;
+		}
+
+		.logo img {
+			width: 200px;
+			height: auto;
+		}
+
+
+		table {
+			display: flex;
+			margin: auto;
+		}
+
+		.logo {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		button {
+
+			width: 150px;
+			height: 50px;
+			background: #052e65;
+			color: white;
+			font-size: 18px;
+
+		}
+
+		li {
+			list-style: none;
+			float: left;
+		}
+
+
+		.foo {
+			margin-top: 2%;
+			display: block;
+			justify-content: center;
+			text-align: center;
+
+		}
+
+		.button-wrap {
+			display: inline-block;
+			width: 300px;
+			height: 100px;
+		}
+
+		button a {
+			text-decoration: none;
+			color: white;
+		}
+
+		button a:visited {
+			text-decoration: none;
+			color: white;
+		}
+		span{
+			font-size:10px;
+			margin-left:10px;
+			color:red;
+
+		}
+
+	</style>
+</head>
+
+<body>
+
+	{% load static %}
+	<div class="logo">
+		<a href="{%url 'board:index' %}" class="logo-a">
+		<img src="{% static 'board/img/index/logo3.PNG' %}" alt="">
+	</a>
+	</div>
+	<form method="POST" class="post-form"><input type="hidden" name="csrfmiddlewaretoken" value="FbWPMhfKY9FfRbCnEajqmfZi0g5Uq0q3RcHcO3IWO2VogOpsW6gD3oU9LZhkXyT4">
+		<table>
+			<tr>
+				<td class="info"> <label for="id_username">학번</label></td>
+				<td><input type="number" name="username" value="" autofocus required id="id_username"></td>
+			</tr>
+			<tr>
+				<tr>
+					<td class="info"> <label for="id_first_name">이름</label></td>
+					<td> <input type="text" name="first_name" value="" maxlength="30" id="id_first_name"></td>
+				</tr>
+				<tr>
+					<td class="info"><label for="id_last_name">별명</label></td>
+					<td><input type="text" name="last_name" value="" maxlength="150" id="id_last_name"></td>
+				</tr>
+				<tr>
+					<td class="info"> <label for="id_email">Email</label> </td>
+					<td><input type="email" name="email" value="" maxlength="254" id="id_email"></td>
+				</tr>
+				<tr>
+					<td class="info"> <label for="id_password1">비밀번호</label></td>
+					<td><input type="password" name="password1" required id="id_password1"> <span>최소 8자,숫자와 문자 혼용하여 사용,비밀번호 중복 불가</span></td>
+
+					<tr>
+						<td class="info"> <label for="id_password2">비밀번호 확인</label></td>
+						<td> <input type="password" name="password2" required id="id_password2"></td>
+						<tr>
+		</table>
+		<div class="foo">
+			<div class="button-wrap">
+				<button type="submit" class="save btn btn-default">회원가입</button>
+			</div>
+			<div class="button-wrap">
+				<button type="reset"><a href="{%url 'board:login' %}">가입취소</a></button>
+			</div>
+		</div>
+
+
+
+
+	</form>
+
+</body>
+
+</html>

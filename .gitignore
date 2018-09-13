@@ -1,4 +1,3 @@
 *.pyc
 emv/
 __pycache__/
-curiouspage/curiouspage/settings.py
