@@ -25,8 +25,8 @@ SECRET_KEY = '(zbuyj8y7l%$e!v7&uug%wt)s^6cg7q9*jgwu9lopm!^fnsy8#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+#added '*'
 
 # Application definition
 
@@ -88,7 +88,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.curious'),
         'USER':'root',
         'PASSWORD':'tiger',
-        'HOST':'localhost',
+        'HOST':'username.mysql.pythonanywhere-services.com',
         'PORT':3306,
     }
 }
